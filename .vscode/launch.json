@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch VMDOMProcessor",
+            "request": "launch",
+            "mainClass": "Backend.Processors.VMDOMProcessor",
+            "projectName": "Virsh-Gui_190f4f02"
+        },
+        {
+            "type": "java",
+            "name": "Launch Launcher",
+            "request": "launch",
+            "mainClass": "Launcher",
+            "projectName": "Virsh-Gui_190f4f02",
+            "vmArgs": "-Xdock:name='Virsh GUI'"
+        }
+    ]
+}

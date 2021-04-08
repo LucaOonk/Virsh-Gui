@@ -1,0 +1,12 @@
+Backend/Controllers/VMController.java
+Backend/Objects/Context.java
+Backend/Objects/VM.java
+Backend/Processors/VMDDetailProcessor.java
+Backend/Processors/VMListProcessor.java
+Launcher.java
+Backend/Terminal.java
+ui/MainContent.java
+ui/MainFrame.java
+ui/ScrollableVMList.java
+ui/VMDetailsPanel.java
+ui/VMListTablePanel.java
