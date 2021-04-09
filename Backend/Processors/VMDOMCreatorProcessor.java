@@ -163,13 +163,13 @@ public class VMDOMCreatorProcessor {
         graphicsNode.setAttribute("listen", "127.0.0.1");
         String port="";
         if(context.getVMList().size()<99 & context.getVMList().size()>9){
-            port="59"+context.getVMList().size();
+            port="59"+context.getVMList().size()+1;
 
 
         }else{
 
             if(context.getVMList().size()<10){
-                port="590"+context.getVMList().size();
+                port="590"+context.getVMList().size()+1;
 
             }
         }

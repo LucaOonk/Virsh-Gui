@@ -94,33 +94,36 @@ public class ScrollableVMList extends JScrollPane {
         @Override
         public void actionPerformed(ActionEvent e) {
             // TODO Auto-generated method stub
-            VMCreationObject vmCreationObject = new VMCreationObject();
-            vmCreationObject.vmName = "test";
-            vmCreationObject.cpus = 2;
-            vmCreationObject.ramInGB = 2;
-            vmCreationObject.arch = "x86_64";
+            // VMCreationObject vmCreationObject = new VMCreationObject();
+            // vmCreationObject.vmName = "test";
+            // vmCreationObject.cpus = 2;
+            // vmCreationObject.ramInGB = 2;
+            // vmCreationObject.arch = "x86_64";
     
-            Disk disk1 = new Disk();
-            disk1.device = "disk";
-            disk1.type = "qcow2";
-            disk1.target = "vda";
-            disk1.source = "/Users/lucaoonk/vms/Ubuntu/ubuntu.qcow2";
+            // Disk disk1 = new Disk();
+            // disk1.device = "disk";
+            // disk1.type = "qcow2";
+            // disk1.target = "vda";
+            // disk1.source = "/Users/lucaoonk/vms/Ubuntu/ubuntu.qcow2";
     
-            vmCreationObject.devices.add(disk1);
+            // vmCreationObject.devices.add(disk1);
     
-            Disk cdrom = new Disk();
-            cdrom.device = "cdrom";
-            cdrom.target = "sdb";
-            cdrom.source = "/Users/lucaoonk/vms/Ubuntu/ubuntu-20.04.1-live-server-amd64.iso";
+            // Disk cdrom = new Disk();
+            // cdrom.device = "cdrom";
+            // cdrom.target = "sdb";
+            // cdrom.source = "/Users/lucaoonk/vms/Ubuntu/ubuntu-20.04.1-live-server-amd64.iso";
     
-            vmCreationObject.devices.add(cdrom);
+            // vmCreationObject.devices.add(cdrom);
     
-            vmCreationObject.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1 -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19";
+            // vmCreationObject.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1 -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19";
     
-            VMDOMCreatorProcessor.createNewVMDomain(vmCreationObject, "", context);
+            // VMDOMCreatorProcessor.createNewVMDomain(vmCreationObject, "", context);
     
-            DOMController.defineDomain("", vmCreationObject.vmName, context);
-            context.refresh();
+            // DOMController.defineDomain("", vmCreationObject.vmName, context);
+            // context.refresh();
+
+            VMConfigurator vmConfigurator = new VMConfigurator(context);
+            vmConfigurator.show();
         }
         });
 
