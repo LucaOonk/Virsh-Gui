@@ -12,6 +12,8 @@ public class VM {
     private String ram;
     private ArrayList<Device> devices;
     private ArrayList<String> portsForwarded;
+    public String vncPort;
+    public String vncIP;
 
     public VM(String domain){
 
@@ -97,4 +99,6 @@ public class VM {
     public ArrayList<String> getForwardedPorts(){
         return this.portsForwarded;
     }
+
+
 }

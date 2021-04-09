@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import Backend.Controllers.DOMController;
 import Backend.Controllers.VMController;
 import Backend.Objects.Context;
 import Backend.Objects.Device;
@@ -70,8 +71,15 @@ public class VMDetailsPanel extends JPanel{
 
         String vmDetails = "<html><table><tr><td><b>Property</b></td><td><b>Value</b></td></tr>";
         vmDetails+= "<tr><td>UUID:</td><td>"+vm.getUUID()+"</td></tr>";
+        vmDetails+= "<tr><td>vnc:</td><td>"+vm.vncIP+":"+vm.vncPort+"</td></tr>";
         vmDetails+= "<tr><td>CPU's:</td><td>"+vm.getcpus()+"</td></tr>";
-        vmDetails+= "<tr><td>Ram in GB:</td><td>"+Integer.parseInt(vm.getRam()) * 1.024E-6+"</td></tr>";
+        double ramAmount = 0;
+        if(Integer.parseInt(vm.getRam()) > 1024){
+            ramAmount = Integer.parseInt(vm.getRam()) * 1.024E-6;
+        }else{
+            ramAmount = Integer.parseInt(vm.getRam());
+        }
+        vmDetails+= "<tr><td>Ram in GB:</td><td>"+ramAmount+"</td></tr>";
 
 
         String disksString = "";
@@ -136,6 +144,66 @@ public class VMDetailsPanel extends JPanel{
             }else{
                 VMController VMC = new VMController(context);
                 VMC.connectToVM(vm);
+            }
+
+
+
+        }
+        });
+
+        JButton destroyButton = new JButton("Destroy VM");
+        destroyButton.setForeground(Color.RED);;
+
+        panel.add(destroyButton); // now add to jpanel
+
+        destroyButton.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            if(vm.isRunning()){
+                JDialog d = new JDialog(context.mainJFrame, "Error");
+  
+                // create a label
+                JLabel l = new JLabel("The vm is running");
+      
+                d.add(l);
+      
+                // setsize of dialog
+                d.setSize(150, 150);
+                d.setLocationRelativeTo(null);
+                // set visibility of dialog
+                d.setVisible(true);
+            }else{
+
+                JDialog d = new JDialog(context.mainJFrame, "Are you sure?");
+  
+                d.setLayout(new FlowLayout());
+                // create a label
+                JLabel l = new JLabel("This cant be undone");
+                JButton b = new JButton("Destroy VM");
+
+                b.addActionListener(new ActionListener() {
+
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // TODO Auto-generated method stub
+                        DOMController.undefineDomain(vm.getDomain(), context);
+                        d.setVisible(false);
+
+                    }
+
+                });
+
+                d.add(l);
+                d.add(b);
+
+                // setsize of dialog
+                d.setSize(200, 150);
+                d.setLocationRelativeTo(null);
+                // set visibility of dialog
+                d.setVisible(true);
+
+
             }
 
 

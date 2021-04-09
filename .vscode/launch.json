@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch VMDOMCreatorProcessor",
+            "request": "launch",
+            "mainClass": "Backend.Processors.VMDOMCreatorProcessor",
+            "projectName": "Virsh-Gui_190f4f02"
+        },
+        {
+            "type": "java",
             "name": "Launch VMDOMProcessor",
             "request": "launch",
             "mainClass": "Backend.Processors.VMDOMProcessor",

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<domain xmlns:qemu="http://libvirt.org/schemas/domain/qemu/1.0" type="qemu">
+    <name>test</name>
+    <uuid>79925769-5e53-4053-ab60-a25390a8fce2</uuid>
+    <vcpu placement="static">2</vcpu>
+    <cpu mode="custom">
+        <model>Westmere</model>
+    </cpu>
+    <memory unit="GB">2</memory>
+    <features>
+        <acpi/>
+        <apic/>
+    </features>
+    <os>
+        <type arch="x86_64" machine="q35">hvm</type>
+        <bootmenu enable="yes"/>
+    </os>
+    <clock offset="localtime"/>
+    <on_poweroff>destroy</on_poweroff>
+    <on_reboot>restart</on_reboot>
+    <on_crash>destroy</on_crash>
+    <pm>
+        <suspend-to-mem enabled="no"/>
+        <suspend-to-disk enabled="no"/>
+    </pm>
+    <devices>
+        <emulator>/usr/local/bin/qemu-system-x86_64</emulator>
+        <controller model="ehci" type="usb"/>
+        <console type="pty">
+            <target type="serial"/>
+        </console>
+        <input bus="usb" type="keyboard"/>
+        <input bus="usb" type="tablet"/>
+        <graphics listen="127.0.0.1" port="5903" type="vnc"/>
+        <video>
+            <model type="virtio" vram="16384"/>
+        </video>
+        <disk device="disk" type="file">
+            <driver name="qemu" type="qcow2"/>
+            <source file="/Users/lucaoonk/vms/Ubuntu/ubuntu.qcow2"/>
+            <target bus="virtio" dev="vda"/>
+        </disk>
+        <disk device="cdrom" type="file">
+            <source file="/Users/lucaoonk/vms/Ubuntu/ubuntu-20.04.1-live-server-amd64.iso"/>
+            <target bus="sata" dev="sdb"/>
+        </disk>
+    </devices>
+    <qemu:commandline>
+        <qemu:arg value="-machine"/>
+        <qemu:arg value="type=q35,accel=hvf"/>
+        <qemu:arg value="-netdev"/>
+        <qemu:arg value="user,id=n1"/>
+        <qemu:arg value="-device"/>
+        <qemu:arg value="virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19"/>
+    </qemu:commandline>
+</domain>

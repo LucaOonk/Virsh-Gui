@@ -11,8 +11,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import Backend.Controllers.DOMController;
 import Backend.Objects.Context;
+import Backend.Objects.Disk;
 import Backend.Objects.VM;
+import Backend.Objects.VMCreationObject;
+import Backend.Processors.VMDOMCreatorProcessor;
 
 public class ScrollableVMList extends JScrollPane {
 
@@ -32,7 +36,7 @@ public class ScrollableVMList extends JScrollPane {
         JPanel content = new JPanel();
         content.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        content.setLayout(new GridLayout(context.getVMList().size() +1, 2));
+        content.setLayout(new GridLayout(context.getVMList().size() +2, 2));
 
         content.add(new JLabel("<html><b>VM name</b></html>")); // now add to jpanel   
 
@@ -77,6 +81,49 @@ public class ScrollableVMList extends JScrollPane {
             });
        
           }
+
+        content.add(new JLabel("")); // now add to jpanel
+
+        // first create button
+        JButton button = new JButton("add New VM");
+        content.add(button); // now add to jpanel
+
+        // now add anonymous action listener
+        button.addActionListener(new ActionListener() {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // TODO Auto-generated method stub
+            VMCreationObject vmCreationObject = new VMCreationObject();
+            vmCreationObject.vmName = "test";
+            vmCreationObject.cpus = 2;
+            vmCreationObject.ramInGB = 2;
+            vmCreationObject.arch = "x86_64";
+    
+            Disk disk1 = new Disk();
+            disk1.device = "disk";
+            disk1.type = "qcow2";
+            disk1.target = "vda";
+            disk1.source = "/Users/lucaoonk/vms/Ubuntu/ubuntu.qcow2";
+    
+            vmCreationObject.devices.add(disk1);
+    
+            Disk cdrom = new Disk();
+            cdrom.device = "cdrom";
+            cdrom.target = "sdb";
+            cdrom.source = "/Users/lucaoonk/vms/Ubuntu/ubuntu-20.04.1-live-server-amd64.iso";
+    
+            vmCreationObject.devices.add(cdrom);
+    
+            vmCreationObject.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1 -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19";
+    
+            VMDOMCreatorProcessor.createNewVMDomain(vmCreationObject, "", context);
+    
+            DOMController.defineDomain("", vmCreationObject.vmName, context);
+            context.refresh();
+        }
+        });
+
         return content;
     }
 

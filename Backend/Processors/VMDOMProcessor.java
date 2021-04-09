@@ -52,6 +52,9 @@ public class VMDOMProcessor {
 
             vm.updateRam(doc.getElementsByTagName("memory").item(0).getTextContent());
 
+            vm.vncIP= doc.getElementsByTagName("graphics").item(0).getAttributes().getNamedItem("listen").getTextContent();
+            vm.vncPort= doc.getElementsByTagName("graphics").item(0).getAttributes().getNamedItem("port").getTextContent();
+
             NodeList element = doc.getElementsByTagName("devices").item(0).getChildNodes();
 
             
