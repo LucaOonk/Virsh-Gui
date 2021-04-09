@@ -38,7 +38,7 @@ public class VMConfigurator extends JDialog{
     public void show(){
         JDialog d = new JDialog(context.mainJFrame, "VM Configurator");
 
-        d.setLayout(new GridLayout(9,2));
+        d.setLayout(new GridLayout(11,2));
   
         d.add(new JLabel("VM location:"));
         JTextField vmLocation = new JTextField();
@@ -67,6 +67,14 @@ public class VMConfigurator extends JDialog{
         d.add(new JLabel("Disk file location:"));
         JTextField diskFileLocation = new JTextField();
         d.add(diskFileLocation);
+
+        JComboBox<String> cdromTarget = new JComboBox<String>(cdromTargets);
+        d.add(new JLabel("CDrom device target:"));
+        d.add(cdromTarget);
+
+        d.add(new JLabel("CDrom file location:"));
+        JTextField cdromFileLocation = new JTextField();
+        d.add(cdromFileLocation);
       
         d.add(new JLabel("VM arguments:"));
         JTextField vmArguments = new JTextField();
@@ -94,13 +102,23 @@ public class VMConfigurator extends JDialog{
                 newVM.suspendToDisk = "no";
                 newVM.suspendToMem = "no";
                 newVM.arch = vmArch.getSelectedItem().toString();
+
                 Disk disk1 = new Disk();
                 disk1.device = "disk";
                 disk1.source = diskFileLocation.getText();
                 disk1.type = "qcow2";
                 disk1.target = diskTarget.getSelectedItem().toString();
                 newVM.devices.add(disk1);
+
                 newVM.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1 -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19 "+vmArguments.getText();
+                
+                Disk cdrom = new Disk();
+                cdrom.device = "cdrom";
+                cdrom.source = cdromFileLocation.getText();
+                cdrom.target = cdromTarget.getSelectedItem().toString();
+
+                newVM.devices.add(cdrom);
+
                 d.setVisible(false);
                 VMDOMCreatorProcessor.createNewVMDomain(newVM, vmLocation.getText(), context);
                 DOMController.defineDomain("", newVM.vmName, context);
