@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import javax.swing.JFrame;
 
 import src.main.java.com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessor;
+import src.main.java.com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessorThread;
 import src.main.java.com.lucaoonk.virsh_gui.Backend.Processors.VMListProcessor;
 import src.main.java.com.lucaoonk.virsh_gui.ui.MainContent;
 import src.main.java.com.lucaoonk.virsh_gui.ui.ScrollableVMList;
@@ -41,21 +42,20 @@ public class Context {
     }
 
     public void refresh() {
-        System.out.println("Triggerd Refresh");
 
         VMListProcessor processor = new VMListProcessor(this);
         try {
             this.vmList = processor.getVMdomainList();
-            for (VM vm : vmList) {
-                VMDOMProcessor.getDetails(vm);
+            // for (VM vm : vmList) {
+            //     VMDOMProcessor.getDetails(vm);
 
-            }
-            // VMDDetailProcessor.startVMDetailthread(this);
+            // }
+            VMDOMProcessorThread domThread = new VMDOMProcessorThread(this);
+            
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("Updating Content");
 
         mainContent.update();
     }

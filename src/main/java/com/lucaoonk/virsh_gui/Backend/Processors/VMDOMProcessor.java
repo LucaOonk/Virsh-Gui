@@ -4,9 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.StringReader;
-import java.util.List;
 
-import javax.swing.SwingWorker;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -18,7 +16,7 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Device;
 import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Disk;
 import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
 
@@ -69,7 +67,6 @@ public class VMDOMProcessor {
                         disk.type= el.getAttribute("type");
                         disk.source = el.getElementsByTagName("source").item(0).getAttributes().getNamedItem("file").getTextContent();
                         disk.driver = el.getElementsByTagName("driver").item(0).getAttributes().getNamedItem("type").getTextContent();
-
                         vm.addDevice(disk);
                         
 
@@ -108,45 +105,5 @@ public class VMDOMProcessor {
     
     }
 
-    public static void startVMDOMDetailthread(Context context) 
-    {
-        final Context context2 = context;
-        SwingWorker sw1 = new SwingWorker() 
-        {
-  
-            @Override
-            protected String doInBackground() throws Exception 
-            {
-                // define what thread will do here
-
-                for (VM vm : context2.getVMList()) {
-                    getDetails(vm);
-                }
-                return "done";
-            }
-  
-            @Override
-            protected void process(List chunks)
-            {
-                // define what the event dispatch thread 
-                // will do with the intermediate results received
-                // while the thread is executing
-
-            }
-  
-            @Override
-            protected void done() 
-            {
-                // this method is called when the background 
-                // thread finishes execution
-
-                context2.refresh();
-
-            }
-        };
-          
-        // executes the swingworker on worker thread
-        sw1.execute(); 
-    }
 
 }
