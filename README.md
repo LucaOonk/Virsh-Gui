@@ -27,6 +27,9 @@ Since macOS doesn't support QEMU security features, we need to disable them:
   
 Finally start the libvirt service, with `brew services start libvirt`. It will start after boot as well.
 
+# Download:
+Releases can be found here: https://github.com/LucaOonk/Virsh-Gui/releases
+
 ### How to add a machine:
 Follow this awsome guide: https://www.naut.ca/blog/2020/08/26/ubuntu-vm-on-macos-with-libvirt-qemu/
 
