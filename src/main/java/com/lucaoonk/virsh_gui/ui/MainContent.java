@@ -1,8 +1,8 @@
-package src.main.java.com.lucaoonk.virsh_gui.ui;
+package com.lucaoonk.virsh_gui.ui;
 
 import javax.swing.JPanel;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
 
 import java.awt.*;
 

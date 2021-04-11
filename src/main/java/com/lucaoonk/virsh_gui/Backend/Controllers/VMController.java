@@ -1,12 +1,12 @@
-package src.main.java.com.lucaoonk.virsh_gui.Backend.Controllers;
+package com.lucaoonk.virsh_gui.Backend.Controllers;
 
 import java.io.IOException;
 import java.util.List;
 
 import javax.swing.SwingWorker;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.VM;
 
 public class VMController {
 
@@ -52,7 +52,7 @@ public class VMController {
                 // define what thread will do here
                 if(!vmToStart.isRunning()){
                     try {
-                        Process process = Runtime.getRuntime().exec("virsh start "+vmToStart.getDomain());
+                        Process process = Runtime.getRuntime().exec("/usr/local/bin/virsh start "+vmToStart.getDomain());
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -104,7 +104,7 @@ public class VMController {
 
                 if(vmToStop.isRunning()){
                     try {
-                        Process process = Runtime.getRuntime().exec("virsh shutdown "+vmToStop.getDomain());
+                        Process process = Runtime.getRuntime().exec("/usr/local/bin/virsh shutdown "+vmToStop.getDomain());
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -155,7 +155,7 @@ public class VMController {
 
                 if(vmToConnect.isRunning()){
                     try {
-                        Process process = Runtime.getRuntime().exec("virt-viewer "+vmToConnect.getDomain());
+                        Process process = Runtime.getRuntime().exec("/usr/local/bin/virt-viewer "+vmToConnect.getDomain());
                     } catch (IOException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();

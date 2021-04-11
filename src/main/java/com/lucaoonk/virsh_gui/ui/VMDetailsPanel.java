@@ -1,4 +1,4 @@
-package src.main.java.com.lucaoonk.virsh_gui.ui;
+package com.lucaoonk.virsh_gui.ui;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -11,12 +11,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Controllers.DOMController;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Controllers.VMController;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Device;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Disk;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.Backend.Controllers.DOMController;
+import com.lucaoonk.virsh_gui.Backend.Controllers.VMController;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.Device;
+import com.lucaoonk.virsh_gui.Backend.Objects.Disk;
+import com.lucaoonk.virsh_gui.Backend.Objects.VM;
 
 public class VMDetailsPanel extends JPanel implements ActionListener{
 
@@ -90,7 +90,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
         String disksString = "";
         int amountOfDisks = 0;
         for (Device dev : vm.getDevices()) {
-            if(dev.getClass().getName().equals("src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Disk")){
+            if(dev.getClass().getName().equals("com.lucaoonk.virsh_gui.Backend.Objects.Disk")){
                 amountOfDisks+=1;
                 Disk disk = (Disk) dev;
                 disksString+= disk.device + ":"+"<br>"+"&nbsp;Location: "+ disk.source + "<br>&nbsp;Type: "+ disk.driver + "<br><br>";
@@ -237,7 +237,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
                 this.dialog = new JDialog(context.mainJFrame, "Are you sure?");
                 dialog.setLayout(new FlowLayout());
                 // create a label
-                JLabel l = new JLabel("This cant be undone");
+                JLabel l = new JLabel("<html>This cant be undone, the vm will be undefined.<br>The files will not be deleted.</html>");
                 JButton b = new JButton("Destroy VM");
 
                 b.addActionListener(new ActionListener() {
@@ -256,7 +256,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
                 dialog.add(b);
 
                 // setsize of dialog
-                dialog.setSize(200, 150);
+                dialog.setSize(350, 125);
                 dialog.setLocationRelativeTo(null);
                 // set visibility of dialog
                 dialog.setVisible(true);

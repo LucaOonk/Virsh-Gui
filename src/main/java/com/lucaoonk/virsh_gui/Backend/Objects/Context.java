@@ -1,16 +1,16 @@
-package src.main.java.com.lucaoonk.virsh_gui.Backend.Objects;
+package com.lucaoonk.virsh_gui.Backend.Objects;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessor;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessorThread;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Processors.VMListProcessor;
-import src.main.java.com.lucaoonk.virsh_gui.ui.MainContent;
-import src.main.java.com.lucaoonk.virsh_gui.ui.ScrollableVMList;
-import src.main.java.com.lucaoonk.virsh_gui.ui.VMDetailsPanel;
+import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessor;
+import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessorThread;
+import com.lucaoonk.virsh_gui.Backend.Processors.VMListProcessor;
+import com.lucaoonk.virsh_gui.ui.MainContent;
+import com.lucaoonk.virsh_gui.ui.ScrollableVMList;
+import com.lucaoonk.virsh_gui.ui.VMDetailsPanel;
 
 public class Context {
 

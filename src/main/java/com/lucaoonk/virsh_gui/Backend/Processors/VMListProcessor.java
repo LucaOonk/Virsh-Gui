@@ -1,11 +1,11 @@
-package src.main.java.com.lucaoonk.virsh_gui.Backend.Processors;
+package com.lucaoonk.virsh_gui.Backend.Processors;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.VM;
 
 public class VMListProcessor {
 
@@ -26,7 +26,7 @@ public class VMListProcessor {
 
     public static ArrayList<VM> getVMdomainList() throws IOException {
 
-        Process process = Runtime.getRuntime().exec("virsh list --all --id --name");
+        Process process = Runtime.getRuntime().exec("/usr/local/bin/virsh list --all --id --name");
 
 
         BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));

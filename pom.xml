@@ -36,7 +36,7 @@
           </descriptorRefs>
           <archive>
             <manifest>
-              <mainClass>src.main.java.com.lucaoonk.virsh_gui.Launcher</mainClass>
+              <mainClass>com.lucaoonk.virsh_gui.Launcher</mainClass>
             </manifest>
           </archive>
                 <finalName>virsh_gui</finalName>
@@ -52,6 +52,35 @@
           </execution>
         </executions>
       </plugin>
+    <plugin>
+      <groupId>de.perdian.maven.plugins</groupId>
+	    <artifactId>macosappbundler-maven-plugin</artifactId>
+	    <version>1.5.0</version>
+	    <configuration>
+		<plist>
+			<!-- <CFBundleIconFile>/Users/lucaoonk/Documents/GitHub/Virsh-Gui/target/icon.icns</CFBundleIconFile> -->
+			<CFBundleDisplayName>Virsh GUI</CFBundleDisplayName>
+			<CFBundleName>Virsh GUI</CFBundleName>
+			<JVMMainClassName>com.lucaoonk.virsh_gui.Launcher</JVMMainClassName>
+		</plist>
+		<dmg>
+			<generate>true</generate>
+			<autoFallback>true</autoFallback>
+		</dmg>
+    	<jdk>
+			<include>false</include>
+			<location>/Library/Java/JavaVirtualMachines/jdk-13.0.1.jdk</location>
+		</jdk>
+	</configuration>
+	<executions>
+		<execution>
+			<phase>package</phase>
+			<goals>
+				<goal>bundle</goal>
+			</goals>
+		</execution>
+	</executions>
+  </plugin>
   </plugins>
   </build>
 <dependencies/>

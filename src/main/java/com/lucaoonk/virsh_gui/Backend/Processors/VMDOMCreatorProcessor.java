@@ -1,4 +1,4 @@
-package src.main.java.com.lucaoonk.virsh_gui.Backend.Processors;
+package com.lucaoonk.virsh_gui.Backend.Processors;
 
 import java.io.File;
 import java.util.UUID;
@@ -17,10 +17,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Device;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Disk;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VMCreationObject;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.Device;
+import com.lucaoonk.virsh_gui.Backend.Objects.Disk;
+import com.lucaoonk.virsh_gui.Backend.Objects.VMCreationObject;
 
 
 public class VMDOMCreatorProcessor {

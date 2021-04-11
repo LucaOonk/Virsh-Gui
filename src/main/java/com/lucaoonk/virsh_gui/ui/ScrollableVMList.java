@@ -1,4 +1,4 @@
-package src.main.java.com.lucaoonk.virsh_gui.ui;
+package com.lucaoonk.virsh_gui.ui;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -10,9 +10,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
-import src.main.java.com.lucaoonk.virsh_gui.ui.Buttons.VMinfoButton;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.ui.Buttons.VMinfoButton;
 
 public class ScrollableVMList extends JScrollPane implements ActionListener{
 

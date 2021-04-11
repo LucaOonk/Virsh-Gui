@@ -1,4 +1,4 @@
-package src.main.java.com.lucaoonk.virsh_gui.Backend.Processors;
+package com.lucaoonk.virsh_gui.Backend.Processors;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -16,9 +16,9 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Device;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Disk;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.Backend.Objects.Device;
+import com.lucaoonk.virsh_gui.Backend.Objects.Disk;
+import com.lucaoonk.virsh_gui.Backend.Objects.VM;
 
 public class VMDOMProcessor {
     
@@ -28,7 +28,7 @@ public class VMDOMProcessor {
         Process process;
         try {
 
-            process = Runtime.getRuntime().exec("virsh dumpxml "+vm.getDomain());//
+            process = Runtime.getRuntime().exec("/usr/local/bin/virsh dumpxml "+vm.getDomain());//
             BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
             String line = "";
             String xmlInfo = "";

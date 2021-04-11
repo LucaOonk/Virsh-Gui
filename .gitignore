@@ -115,3 +115,38 @@ target/classes/src/main/java/com/lucaoonk/virsh_gui/Backend/Controllers/VMContro
 target/classes/src/main/java/com/lucaoonk/virsh_gui/Backend/Controllers/VMController$2.class
 target/classes/src/main/java/com/lucaoonk/virsh_gui/Backend/Controllers/VMController$1.class
 target/classes/src/main/java/com/lucaoonk/virsh_gui/Backend/Controllers/DOMController.class
+target/virsh_gui-0.3.jar
+target/Virsh GUI_0.3.dmg
+target/Virsh GUI.app/Contents/MacOS/JavaLauncher
+target/Virsh GUI.app/Contents/Java/classpath/com/lucaoonk/virsh_gui/virsh_gui/0.3/virsh_gui-0.3.jar
+target/Virsh GUI.app/Contents/Info.plist
+target/classes/src/main/java/com/lucaoonk/virsh_gui/Backend/Processors/VMDOMProcessorThread.class
+target/classes/com/lucaoonk/virsh_gui/ui/VMListTablePanel.class
+target/classes/com/lucaoonk/virsh_gui/ui/VMDetailsPanel.class
+target/classes/com/lucaoonk/virsh_gui/ui/VMDetailsPanel$1.class
+target/classes/com/lucaoonk/virsh_gui/ui/VMConfigurator.class
+target/classes/com/lucaoonk/virsh_gui/ui/VMConfigurator$1.class
+target/classes/com/lucaoonk/virsh_gui/ui/ScrollableVMList.class
+target/classes/com/lucaoonk/virsh_gui/ui/MainFrame.class
+target/classes/com/lucaoonk/virsh_gui/ui/MainFrame$1.class
+target/classes/com/lucaoonk/virsh_gui/ui/MainContent.class
+target/classes/com/lucaoonk/virsh_gui/ui/Buttons/VMinfoButton.class
+target/classes/com/lucaoonk/virsh_gui/ui/ApplicationSettings.class
+target/classes/com/lucaoonk/virsh_gui/ui/ApplicationSettings$1.class
+target/classes/com/lucaoonk/virsh_gui/Launcher.class
+target/classes/com/lucaoonk/virsh_gui/Launcher$1.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Processors/VMListProcessor.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Processors/VMDOMProcessorThread.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Processors/VMDOMProcessor.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Processors/VMDOMCreatorProcessor.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Objects/VMCreationObject.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Objects/VM.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Objects/Disk.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Objects/Device.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Objects/Context.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Controllers/VMController.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Controllers/VMController$3.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Controllers/VMController$2.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Controllers/VMController$1.class
+target/classes/com/lucaoonk/virsh_gui/Backend/Controllers/DOMController.class
+target/virsh_gui-0.3.jar

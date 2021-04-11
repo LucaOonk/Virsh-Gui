@@ -1,4 +1,4 @@
-package src.main.java.com.lucaoonk.virsh_gui.ui;
+package com.lucaoonk.virsh_gui.ui;
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -11,10 +11,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessor;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Processors.VMListProcessor;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessor;
+import com.lucaoonk.virsh_gui.Backend.Processors.VMListProcessor;
 
 
 public class MainFrame extends JFrame implements ActionListener {

@@ -1,11 +1,11 @@
-package src.main.java.com.lucaoonk.virsh_gui.ui;
+package com.lucaoonk.virsh_gui.ui;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.VM;
 
 public class VMListTablePanel extends JPanel{
 

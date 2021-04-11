@@ -1,10 +1,10 @@
-package src.main.java.com.lucaoonk.virsh_gui;
+package com.lucaoonk.virsh_gui;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import javax.swing.SwingUtilities;
 
-import src.main.java.com.lucaoonk.virsh_gui.ui.MainFrame;
+import com.lucaoonk.virsh_gui.ui.MainFrame;
 
 
 public class Launcher {

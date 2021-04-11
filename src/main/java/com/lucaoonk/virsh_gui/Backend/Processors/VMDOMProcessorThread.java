@@ -1,9 +1,9 @@
-package src.main.java.com.lucaoonk.virsh_gui.Backend.Processors;
+package com.lucaoonk.virsh_gui.Backend.Processors;
 
 import javax.swing.SwingWorker;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.VM;
 
 public class VMDOMProcessorThread extends SwingWorker{
 

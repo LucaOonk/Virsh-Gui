@@ -1,9 +1,9 @@
-package src.main.java.com.lucaoonk.virsh_gui.ui.Buttons;
+package com.lucaoonk.virsh_gui.ui.Buttons;
 
 import javax.swing.JButton;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.VM;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,4 +1,4 @@
-package src.main.java.com.lucaoonk.virsh_gui.ui;
+package com.lucaoonk.virsh_gui.ui;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -9,11 +9,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Controllers.DOMController;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Disk;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.VMCreationObject;
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Processors.VMDOMCreatorProcessor;
+import com.lucaoonk.virsh_gui.Backend.Controllers.DOMController;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.Disk;
+import com.lucaoonk.virsh_gui.Backend.Objects.VMCreationObject;
+import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMCreatorProcessor;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,10 +1,10 @@
-package src.main.java.com.lucaoonk.virsh_gui.Backend.Controllers;
+package com.lucaoonk.virsh_gui.Backend.Controllers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
 
 public class DOMController {
 
@@ -14,18 +14,18 @@ public class DOMController {
             if(domainLocation.equals("")){
 
                 if(context.defaultSaveLocation.equals("")){
-                    Runtime.getRuntime().exec("virsh define "+System.getProperty("user.home")+"/vms/"+domainName+"/"+domainName+".xml");
+                    Runtime.getRuntime().exec("/usr/local/bin/virsh define "+System.getProperty("user.home")+"/vms/"+domainName+"/"+domainName+".xml");
 
     
                 }else{
 
-                    Runtime.getRuntime().exec("virsh define "+context.defaultSaveLocation+domainName+"/"+domainName+".xml");    
+                    Runtime.getRuntime().exec("/usr/local/bin/virsh define "+context.defaultSaveLocation+domainName+"/"+domainName+".xml");    
                 }
 
 
             }else{
 
-                Runtime.getRuntime().exec("virsh define "+System.getProperty ("user.home")+"/vms/"+domainName+"/"+domainName+".xml");
+                Runtime.getRuntime().exec("/usr/local/bin/virsh define "+System.getProperty ("user.home")+"/vms/"+domainName+"/"+domainName+".xml");
  
             }
 
@@ -41,7 +41,7 @@ public class DOMController {
     public static void undefineDomain( String domainName, Context context){
 
         try {
-            Runtime.getRuntime().exec("virsh undefine "+domainName);
+            Runtime.getRuntime().exec("/usr/local/bin/virsh undefine "+domainName);
             context.updateCurrentSelectedVM(context.getVMList().get(0));
 
         } catch (IOException e) {

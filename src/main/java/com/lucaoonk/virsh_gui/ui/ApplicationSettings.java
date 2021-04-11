@@ -1,4 +1,4 @@
-package src.main.java.com.lucaoonk.virsh_gui.ui;
+package com.lucaoonk.virsh_gui.ui;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
@@ -7,7 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.EmptyBorder;
 
-import src.main.java.com.lucaoonk.virsh_gui.Backend.Objects.Context;
+import com.lucaoonk.virsh_gui.Backend.Objects.Context;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

@@ -1,4 +1,4 @@
-package src.main.java.com.lucaoonk.virsh_gui.Backend.Objects;
+package com.lucaoonk.virsh_gui.Backend.Objects;
 
 public class Disk extends Device{
 
