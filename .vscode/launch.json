@@ -6,6 +6,27 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch ApplicationSettings",
+            "request": "launch",
+            "mainClass": "com.lucaoonk.virsh_gui.Backend.Objects.ApplicationSettings",
+            "projectName": "virsh_gui"
+        },
+        {
+            "type": "java",
+            "name": "Launch MemStatsGraph",
+            "request": "launch",
+            "mainClass": "com.lucaoonk.virsh_gui.ui.Graphs.MemStatsGraph",
+            "projectName": "virsh_gui"
+        },
+        {
+            "type": "java",
+            "name": "Launch UpdateChecker",
+            "request": "launch",
+            "mainClass": "com.lucaoonk.virsh_gui.UpdateChecker.UpdateChecker",
+            "projectName": "virsh_gui"
+        },
+        {
+            "type": "java",
             "name": "Launch Launcher",
             "request": "launch",
             "mainClass": "com.lucaoonk.virsh_gui.Launcher",

@@ -4,7 +4,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
@@ -17,6 +16,7 @@ import com.lucaoonk.virsh_gui.Backend.Objects.Context;
 import com.lucaoonk.virsh_gui.Backend.Objects.Device;
 import com.lucaoonk.virsh_gui.Backend.Objects.Disk;
 import com.lucaoonk.virsh_gui.Backend.Objects.VM;
+
 
 public class VMDetailsPanel extends JPanel implements ActionListener{
 
@@ -31,7 +31,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
     private JButton connectVMButton;
     private JButton stopVMButton;
     private JButton startVMButton;
-    private JButton destroyVMButton;
+    private JButton undefineVMButton;
 
     public VMDetailsPanel(Context context) {
 
@@ -131,12 +131,12 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
 
         button.addActionListener(this);
 
-        JButton destroyButton = new JButton("Destroy VM");
-        destroyButton.setForeground(Color.RED);;
+        JButton UndefineButton = new JButton("Destroy VM");
+        UndefineButton.setForeground(Color.RED);;
 
-        panel.add(destroyButton); // now add to jpanel
-        this.destroyVMButton = destroyButton;
-        destroyButton.addActionListener(this);
+        panel.add(UndefineButton); // now add to jpanel
+        this.undefineVMButton = UndefineButton;
+        UndefineButton.addActionListener(this);
 
         JButton startbutton = new JButton("Start VM");
 
@@ -217,7 +217,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
             }
         }
 
-        if(e.getSource().equals(this.destroyVMButton)){
+        if(e.getSource().equals(this.undefineVMButton)){
 
             if(VMDetailsPanel.this.vm.isRunning()){
                 JDialog d = new JDialog(context.mainJFrame, "Error");
@@ -238,7 +238,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
                 dialog.setLayout(new FlowLayout());
                 // create a label
                 JLabel l = new JLabel("<html>This cant be undone, the vm will be undefined.<br>The files will not be deleted.</html>");
-                JButton b = new JButton("Destroy VM");
+                JButton b = new JButton("Undefine VM");
 
                 b.addActionListener(new ActionListener() {
 

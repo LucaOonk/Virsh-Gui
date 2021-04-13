@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessor;
 import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessorThread;
 import com.lucaoonk.virsh_gui.Backend.Processors.VMListProcessor;
 import com.lucaoonk.virsh_gui.ui.MainContent;
@@ -21,6 +20,19 @@ public class Context {
     public MainContent mainContent;
     public JFrame mainJFrame;
     public String defaultSaveLocation;
+    private static final String versionString = "0.3.2";
+    public Boolean checkForUpdates;
+
+
+    public Context(){
+        initDefaults();
+    }
+
+    private void initDefaults(){
+        this.checkForUpdates = true;
+        this.defaultSaveLocation= "";
+
+    }
 
     public void updateVMList(ArrayList<VM> vmList){
         this.vmList= vmList;
@@ -60,4 +72,8 @@ public class Context {
         mainContent.update();
     }
     
+
+    public static String getVersion(){
+        return versionString;
+    }
 }

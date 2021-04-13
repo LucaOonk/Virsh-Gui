@@ -1,20 +1,24 @@
 package com.lucaoonk.virsh_gui.ui;
 
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.net.URI;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.Backend.Objects.*;
 import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessor;
 import com.lucaoonk.virsh_gui.Backend.Processors.VMListProcessor;
+import com.lucaoonk.virsh_gui.UpdateChecker.UpdateChecker;
 
 
 public class MainFrame extends JFrame implements ActionListener {
@@ -38,6 +42,8 @@ public class MainFrame extends JFrame implements ActionListener {
         this.mainFrame = new JFrame();
         this.context.mainJFrame = mainFrame;
 
+        ApplicationSettings.readSettingsFile(context);
+
         VMListProcessor t = new VMListProcessor(context);
 
         try {
@@ -52,7 +58,19 @@ public class MainFrame extends JFrame implements ActionListener {
         } catch (IOException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
+            
+            JDialog dialog = new JDialog();
+            dialog.setTitle("An error occured!");
+            JLabel label = new JLabel("Make sure the dependencies are installed!");
+            
+            dialog.add(label);
+            dialog.setSize(300, 150);
+            dialog.setLocationRelativeTo(null);
+            dialog.setVisible(true);
+            dialog.setAlwaysOnTop(true);
+            dialog.setDefaultCloseOperation(EXIT_ON_CLOSE);
         }
+
         // java.net.URL url = ClassLoader.getSystemResource("resources/images/cloud.png");
         // Toolkit kit = Toolkit.getDefaultToolkit();
         // Image img = kit.createImage(url);
@@ -87,15 +105,45 @@ public class MainFrame extends JFrame implements ActionListener {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                ApplicationSettings settings = new ApplicationSettings();
+                ApplicationSettingsView settings = new ApplicationSettingsView();
                 settings.show(context);
 
             }
 
         });
-
         settingsMenu.add(settingsMenuItem);
         menuBar.add(settingsMenu);
+
+        if(context.checkForUpdates){
+            
+            UpdateChecker checker = new UpdateChecker(context);
+            if(checker.isNewewVersionAvailable()){
+                JMenu updateMenu = new JMenu("New Version Available");
+                JMenuItem updateMenuItem = new JMenuItem("Get Update");
+                updateMenuItem.addActionListener(new ActionListener(){
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    try {
+                        Desktop desktop = java.awt.Desktop.getDesktop();
+                        URI oURL = new URI("https://github.com/LucaOonk/Virsh-Gui/releases/latest");
+                        desktop.browse(oURL);
+                      } catch (Exception f) {
+                        f.printStackTrace();
+                      }
+    
+                }
+    
+
+            });
+
+            updateMenu.add(updateMenuItem);
+            menuBar.add(updateMenu);
+
+            }
+        }
+
+
         mainFrame.setJMenuBar(menuBar);
 
         // this.portalpage = new MainPortalPage(this.user, this);
