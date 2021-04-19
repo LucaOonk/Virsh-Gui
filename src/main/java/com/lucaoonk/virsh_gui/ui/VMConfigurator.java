@@ -24,7 +24,10 @@ public class VMConfigurator extends JDialog{
     private String[] diskTargets = {"vda", "vdb", "vdc", "vdd", "vde", "vdf", "vdg", "vdh", "vdi"};
     private String[] cdromTargets = {"sda", "sdb", "sdc", "sdd", "sde", "sdf", "sdg", "sdh", "sdi"};
     private String[] archs = {"x86_64", "arm", "i386", "m68k", "ppc", "ppc64"};
-
+    private String htmlStart = "<html>";
+    private String htmlEnd = "</html>";
+    private String boldStart = "<b>";
+    private String boldlEnd = "</b>";
     /**
      *
      */
@@ -44,47 +47,47 @@ public class VMConfigurator extends JDialog{
 
         d.setLayout(new GridLayout(12,2));
   
-        d.add(new JLabel("VM location:"));
+        d.add(new JLabel(htmlStart+boldStart+"VM location"+boldlEnd+": <br>if empty it wil be placed in the set default folder: "+context.getDefaultSaveLocation()+htmlEnd));
         final JTextField vmLocation = new JTextField();
         d.add(vmLocation);
 
-        d.add(new JLabel("VM Name:"));
+        d.add(new JLabel(htmlStart+boldStart+"VM Name:"+boldlEnd+htmlEnd));
         final JTextField vmName = new JTextField();
         d.add(vmName);
 
-        d.add(new JLabel("VM Cpu's:"));
+        d.add(new JLabel(htmlStart+boldStart+"VM Cpu's:"+boldlEnd+htmlEnd));
         final JTextField vmCpus = new JTextField();
         d.add(vmCpus);
 
-        d.add(new JLabel("Ram in GB:"));
+        d.add(new JLabel(htmlStart+boldStart+"Ram in GB:"+boldlEnd+htmlEnd));
         final JTextField vmRam = new JTextField();
         d.add(vmRam);
 
         final JComboBox<String> vmArch = new JComboBox<String>(archs);
-        d.add(new JLabel("VM arch:"));
+        d.add(new JLabel(htmlStart+boldStart+"VM arch:"+boldlEnd+htmlEnd));
         d.add(vmArch);
 
         final JComboBox<String> diskTarget = new JComboBox<String>(diskTargets);
-        d.add(new JLabel("Disk device target:"));
+        d.add(new JLabel(htmlStart+boldStart+"Disk device target:"+boldlEnd+htmlEnd));
         d.add(diskTarget);
 
-        d.add(new JLabel("Disk file location:"));
+        d.add(new JLabel(htmlStart+boldStart+"Disk file location:"+boldlEnd+htmlEnd));
         final JTextField diskFileLocation = new JTextField();
         d.add(diskFileLocation);
 
         final JComboBox<String> cdromTarget = new JComboBox<String>(cdromTargets);
-        d.add(new JLabel("CDrom device target:"));
+        d.add(new JLabel(htmlStart+boldStart+"CDrom device target:"+boldlEnd+htmlEnd));
         d.add(cdromTarget);
 
-        d.add(new JLabel("CDrom file location:"));
+        d.add(new JLabel(htmlStart+boldStart+"CDrom file location:"+boldlEnd+htmlEnd));
         final JTextField cdromFileLocation = new JTextField();
         d.add(cdromFileLocation);
       
-        d.add(new JLabel("VM arguments:"));
+        d.add(new JLabel(htmlStart+boldStart+"VM arguments:"+boldlEnd+htmlEnd));
         final JTextField vmArguments = new JTextField();
         d.add(vmArguments);
 
-        d.add(new JLabel("Forwarded ports:"));
+        d.add(new JLabel(htmlStart+boldStart+"Forwarded ports"+boldlEnd+":<br> format: protocol::external Port-:interal Port<br>e.g.: tcp::2222:22,tcp::8080-8081:80"+htmlEnd));
         final JTextField vmForwardedPorts = new JTextField();
         d.add(vmForwardedPorts);
 

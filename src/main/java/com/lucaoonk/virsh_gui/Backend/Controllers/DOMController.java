@@ -14,7 +14,7 @@ public class DOMController {
             if(domainLocation.equals("")){
 
                 if(context.defaultSaveLocation.equals("")){
-                    Runtime.getRuntime().exec("/usr/local/bin/virsh define "+System.getProperty("user.home")+"/vms/"+domainName+"/"+domainName+".xml");
+                    Runtime.getRuntime().exec("/usr/local/bin/virsh define "+context.getDefaultSaveLocation()+domainName+"/"+domainName+".xml");
 
     
                 }else{

@@ -1,5 +1,6 @@
 package com.lucaoonk.virsh_gui.Backend.Controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -35,6 +36,51 @@ public class VMController {
 
         final VM vmToStop = vm;
         VMController.stopVMthread(vmToStop, context);
+
+    }
+
+    public static String createVMDiskthread(String vmDomain, Context context, String size, String diskFileLocation) 
+    {
+        final String vmDomain2 = vmDomain;
+        final Context context2 = context;
+        final String sizeString = size;
+        final String diskFileLocation2 = diskFileLocation;
+        final String defeninitivePath;
+        if(diskFileLocation2.equals("")){
+            
+            defeninitivePath=  context2.getDefaultSaveLocation()+vmDomain2+"/"+ vmDomain2+".qcow2";
+
+        }else{
+            defeninitivePath=  diskFileLocation2+ vmDomain2+".qcow2";
+
+        }
+
+
+        File myFile = new File(defeninitivePath);
+        myFile.getParentFile().mkdirs();
+
+        // define what thread will do here
+        if(diskFileLocation2.equals("")){
+            try {
+
+                 Process process = Runtime.getRuntime().exec("/usr/local/bin/qemu-img create -f qcow2 "+context2.getDefaultSaveLocation()+vmDomain2+"/"+ vmDomain2+".qcow2 +"+sizeString);
+
+            } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+        
+            }else{
+                try {
+                    Process process = Runtime.getRuntime().exec("/usr/local/bin/qemu-img create -f qcow2 "+diskFileLocation2+ vmDomain2+".qcow2 +"+sizeString);
+
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+
+        return defeninitivePath;
 
     }
 

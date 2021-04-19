@@ -122,7 +122,7 @@ public class VMDOMCreatorProcessor {
 
             }else{
 
-                File myFile = new File(System.getProperty ("user.home")+"/vms/"+vmCreationObject.vmName+"/"+vmCreationObject.vmName+".xml");
+                File myFile = new File(context.getDefaultSaveLocation()+vmCreationObject.vmName+"/"+vmCreationObject.vmName+".xml");
                 myFile.getParentFile().mkdirs();
 
                 StreamResult file = new StreamResult(myFile);
@@ -300,7 +300,7 @@ public class VMDOMCreatorProcessor {
 
         for (Device device : vmCreationObject.devices) {
 
-            if(device.getClass().getName().equals("Backend.Objects.Disk")){
+            if(device.getClass().getName().equals("com.lucaoonk.virsh_gui.Backend.Objects.Disk")){
                 Disk disk = (Disk) device;
 
 

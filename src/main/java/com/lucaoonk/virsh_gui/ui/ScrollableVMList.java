@@ -98,8 +98,10 @@ public class ScrollableVMList extends JScrollPane implements ActionListener{
         }
 
         if(e.getSource().equals(this.addNewVMButton)){
-            VMConfigurator vmConfigurator = new VMConfigurator(context);
-            vmConfigurator.show();
+            // VMConfigurator vmConfigurator = new VMConfigurator(context);
+            // vmConfigurator.show();
+            VMConfiguratorTabbedPane configurator = new VMConfiguratorTabbedPane(context);
+            configurator.show();
         }
 
         if(e.getSource().equals(this.showVMInfoButton)){

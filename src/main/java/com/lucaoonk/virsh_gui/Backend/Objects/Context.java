@@ -20,8 +20,9 @@ public class Context {
     public MainContent mainContent;
     public JFrame mainJFrame;
     public String defaultSaveLocation;
-    private static final String versionString = "0.3.2";
+    private static final String versionString = "0.3.3";
     public Boolean checkForUpdates;
+    private String applicationDefaultSaveLocation;
 
 
     public Context(){
@@ -30,13 +31,14 @@ public class Context {
 
     private void initDefaults(){
         this.checkForUpdates = true;
-        this.defaultSaveLocation= "";
+        this.defaultSaveLocation=System.getProperty("user.home")+"/vms/";
+        this.applicationDefaultSaveLocation=System.getProperty("user.home")+"/vms/";
 
     }
 
     public void updateVMList(ArrayList<VM> vmList){
         this.vmList= vmList;
-        defaultSaveLocation= "";
+        // defaultSaveLocation= "";
         this.currentSelectedVM = vmList.get(0);
     }
 
@@ -75,5 +77,18 @@ public class Context {
 
     public static String getVersion(){
         return versionString;
+    }
+
+    public String getDefaultSaveLocation() {
+
+        if(defaultSaveLocation.equals("")){
+
+            return applicationDefaultSaveLocation;
+
+        }else{
+
+            return defaultSaveLocation;
+        }
+
     }
 }

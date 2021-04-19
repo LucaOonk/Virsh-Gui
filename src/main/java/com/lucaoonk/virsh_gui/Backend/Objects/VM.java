@@ -100,5 +100,41 @@ public class VM {
         return this.portsForwarded;
     }
 
+    public String vmDetailsTable(){
+        String vmDetails = "<html><table><tr><td><b>Property</b></td><td><b>Value</b></td></tr>";
+        vmDetails+= "<tr><td>UUID:</td><td>"+this.getUUID()+"</td></tr>";
+        vmDetails+= "<tr><td>vnc:</td><td>"+this.vncIP+":"+this.vncPort+"</td></tr>";
+        vmDetails+= "<tr><td>CPU's:</td><td>"+this.getcpus()+"</td></tr>";
+        double ramAmount = 0;
+        if(Integer.parseInt(this.getRam()) > 1024){
+            ramAmount = Integer.parseInt(this.getRam()) * 1.024E-6;
+        }else{
+            ramAmount = Integer.parseInt(this.getRam());
+        }
+        vmDetails+= "<tr><td>Ram in GB:</td><td>"+ramAmount+"</td></tr>";
+
+
+        String disksString = "";
+        int amountOfDisks = 0;
+        for (Device dev : this.getDevices()) {
+            if(dev.getClass().getName().equals("com.lucaoonk.virsh_gui.Backend.Objects.Disk")){
+                amountOfDisks+=1;
+                Disk disk = (Disk) dev;
+                disksString+= disk.device + ":"+"<br>"+"&nbsp;Location: "+ disk.source + "<br>&nbsp;Type: "+ disk.driver + "<br><br>";
+
+            }
+
+        }
+        vmDetails+= "<tr><td>Attached Disks ("+amountOfDisks+") :</td><td>"+disksString+"</td></tr>";
+
+        String forwardedPorts = "";
+        for (String port : this.getForwardedPorts()) {
+            forwardedPorts+= port + "<br>";
+        }
+        vmDetails+= "<tr><td>Forwarded Ports ("+this.getForwardedPorts().size()+")<br> Protocol::External Port:Internal Port :</td><td>"+forwardedPorts+"</td></tr>";
+
+        vmDetails+= "</table></html>";
+        return vmDetails;
+    }
 
 }

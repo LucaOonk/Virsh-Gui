@@ -72,12 +72,8 @@ public class UpdateChecker extends SwingWorker{
         try {
             HttpResponse<JsonNode> response = Unirest.get(urlToCheck).asJson();
             JsonNode responseBody = response.getBody();
-            System.out.println(responseBody);
 
         if (response.isSuccess()) {
-
-        System.out.println(responseBody);
-
         String latestVersion = responseBody.getObject().get("tag_name").toString();
 
         System.out.println("Latest version: "+ latestVersion);

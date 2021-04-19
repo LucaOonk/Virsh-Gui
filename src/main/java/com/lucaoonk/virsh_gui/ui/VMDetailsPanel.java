@@ -74,40 +74,8 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
 
         VM vm = context.getCurrentSelectedVM();
 
-        String vmDetails = "<html><table><tr><td><b>Property</b></td><td><b>Value</b></td></tr>";
-        vmDetails+= "<tr><td>UUID:</td><td>"+vm.getUUID()+"</td></tr>";
-        vmDetails+= "<tr><td>vnc:</td><td>"+vm.vncIP+":"+vm.vncPort+"</td></tr>";
-        vmDetails+= "<tr><td>CPU's:</td><td>"+vm.getcpus()+"</td></tr>";
-        double ramAmount = 0;
-        if(Integer.parseInt(vm.getRam()) > 1024){
-            ramAmount = Integer.parseInt(vm.getRam()) * 1.024E-6;
-        }else{
-            ramAmount = Integer.parseInt(vm.getRam());
-        }
-        vmDetails+= "<tr><td>Ram in GB:</td><td>"+ramAmount+"</td></tr>";
-
-
-        String disksString = "";
-        int amountOfDisks = 0;
-        for (Device dev : vm.getDevices()) {
-            if(dev.getClass().getName().equals("com.lucaoonk.virsh_gui.Backend.Objects.Disk")){
-                amountOfDisks+=1;
-                Disk disk = (Disk) dev;
-                disksString+= disk.device + ":"+"<br>"+"&nbsp;Location: "+ disk.source + "<br>&nbsp;Type: "+ disk.driver + "<br><br>";
-
-            }
-
-        }
-        vmDetails+= "<tr><td>Attached Disks ("+amountOfDisks+") :</td><td>"+disksString+"</td></tr>";
-
-        String forwardedPorts = "";
-        for (String port : vm.getForwardedPorts()) {
-            forwardedPorts+= port + "<br>";
-        }
-        vmDetails+= "<tr><td>Forwarded Ports ("+vm.getForwardedPorts().size()+")<br> Protocol::External Port:Internal Port :</td><td>"+forwardedPorts+"</td></tr>";
-
-        vmDetails+= "</table></html>";
-        panel.add(new JLabel(vmDetails));
+       
+        panel.add(new JLabel(vm.vmDetailsTable()));
 
         mainPanel.add(panel, BorderLayout.CENTER);
         mainPanel.add(getButtonPanel(), BorderLayout.NORTH);
@@ -131,7 +99,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
 
         button.addActionListener(this);
 
-        JButton UndefineButton = new JButton("Destroy VM");
+        JButton UndefineButton = new JButton("Undefine VM");
         UndefineButton.setForeground(Color.RED);;
 
         panel.add(UndefineButton); // now add to jpanel
