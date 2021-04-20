@@ -39,6 +39,13 @@ public class VMController {
 
     }
 
+    public void destroyVM(VM vm){
+
+        final VM vmToStop = vm;
+        VMController.destroyVM(vmToStop, context);
+
+    }
+
     public static String createVMDiskthread(String vmDomain, Context context, String size, String diskFileLocation) 
     {
         final String vmDomain2 = vmDomain;
@@ -236,4 +243,55 @@ public class VMController {
         // executes the swingworker on worker thread
         sw1.execute(); 
     }
+    public static void destroyVM(VM vm, Context context) 
+    {
+        final VM vmToConnect =vm;
+        final Context context2 = context;
+
+        SwingWorker sw1 = new SwingWorker() 
+        {
+  
+            @Override
+            protected String doInBackground() throws Exception 
+            {
+                // define what thread will do here
+
+                if(vmToConnect.isRunning()){
+                    try {
+                        Process process = Runtime.getRuntime().exec("/usr/local/bin/virsh destroy "+vmToConnect.getDomain());
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+        
+                }else{
+                    System.out.println("Machine is not running");
+                }
+                return "done";
+            }
+  
+            @Override
+            protected void process(List chunks)
+            {
+                // define what the event dispatch thread 
+                // will do with the intermediate results received
+                // while the thread is executing
+
+            }
+  
+            @Override
+            protected void done() 
+            {
+                // this method is called when the background 
+                // thread finishes execution
+
+                context2.refresh();
+
+            }
+        };
+          
+        // executes the swingworker on worker thread
+        sw1.execute(); 
+    }
+
 }

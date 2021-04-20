@@ -74,13 +74,14 @@
       <plugin>
       <groupId>de.perdian.maven.plugins</groupId>
 	    <artifactId>macosappbundler-maven-plugin</artifactId>
-	    <version>1.5.0</version>
+	    <version>1.10.2</version>
 	    <configuration>
 		  <plist>
-			  <!-- <CFBundleIconFile>/Users/lucaoonk/Documents/GitHub/Virsh-Gui/target/icon.icns</CFBundleIconFile> -->
+			  <CFBundleIconFile>icon.icns</CFBundleIconFile>
 			  <CFBundleDisplayName>Virsh GUI</CFBundleDisplayName>
 			  <CFBundleName>Virsh GUI</CFBundleName>
 			  <JVMMainClassName>com.lucaoonk.virsh_gui.Launcher</JVMMainClassName>
+        <NSHighResolutionCapable>true</NSHighResolutionCapable>
 		  </plist>
 		  <dmg>
 			  <generate>false</generate>

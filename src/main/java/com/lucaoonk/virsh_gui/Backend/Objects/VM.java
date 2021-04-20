@@ -105,11 +105,16 @@ public class VM {
         vmDetails+= "<tr><td>UUID:</td><td>"+this.getUUID()+"</td></tr>";
         vmDetails+= "<tr><td>vnc:</td><td>"+this.vncIP+":"+this.vncPort+"</td></tr>";
         vmDetails+= "<tr><td>CPU's:</td><td>"+this.getcpus()+"</td></tr>";
-        double ramAmount = 0;
-        if(Integer.parseInt(this.getRam()) > 1024){
-            ramAmount = Integer.parseInt(this.getRam()) * 1.024E-6;
+        String ramAmount = "0";
+        if(this.getRam() == null){
+            ramAmount = "Undefined";
+
         }else{
-            ramAmount = Integer.parseInt(this.getRam());
+        if(Integer.parseInt(this.getRam()) > 1024){
+            ramAmount = ""+Integer.parseInt(this.getRam()) * 1.024E-6;
+        }else{
+            ramAmount = ""+Integer.parseInt(this.getRam());
+        }
         }
         vmDetails+= "<tr><td>Ram in GB:</td><td>"+ramAmount+"</td></tr>";
 

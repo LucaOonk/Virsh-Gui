@@ -18,6 +18,9 @@ public class VMCreationObject {
         devices = new ArrayList<Device>();
         suspendToMem = "no";
         suspendToDisk = "no";
+        cpus= 1;
+        ramInGB = 1;
 
     }
+
 }

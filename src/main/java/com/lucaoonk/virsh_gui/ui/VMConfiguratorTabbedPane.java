@@ -4,6 +4,7 @@ import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
+import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -42,6 +43,7 @@ public class VMConfiguratorTabbedPane implements ActionListener {
     private String boldlEnd = "</b>";
     private JPanel finalPane;
     private JDialog dialog;
+    private JDialog summarydialog;
 
     private JTextField vmName;
     private JTextField vmRam;
@@ -60,6 +62,7 @@ public class VMConfiguratorTabbedPane implements ActionListener {
     private JTextField vmForwardedPorts;
     private JCheckBox createNewDisk;
     private JTextField newDiskSize;
+    private JButton showSummary;
     
     public VMConfiguratorTabbedPane(Context context){
         UIManager.put("TabbedPane.selected", Color.BLACK);
@@ -84,13 +87,13 @@ public class VMConfiguratorTabbedPane implements ActionListener {
 
         JTabbedPane tabs = new JTabbedPane();
 
-        tabs.addTab("General", generalPane);
-        tabs.addTab("Storage & cd", disksPanel);
+        tabs.addTab("1. General", generalPane);
+        tabs.addTab("2. Storage & cd", disksPanel);
 
-        tabs.addTab("Advanced Settings", advancedPane);
+        tabs.addTab("3. Advanced Settings", advancedPane);
         
         
-        tabs.addTab("Final Step", finalPane);
+        tabs.addTab("4. Final Step", finalPane);
 
         // tabs.addTab("Select Course", selectCourse);
         
@@ -222,86 +225,147 @@ public class VMConfiguratorTabbedPane implements ActionListener {
     private JPanel finalPane(){
 
         JPanel panel = new JPanel();
-        panel.setLayout(new GridLayout(2,1));
+        panel.setLayout(new FlowLayout());
 
-        // panel.add(new JLabel(vm.vmDetailsTable()));
+        // JButton showSummary = new JButton("Show Summary");
+        // this.showSummary = showSummary;
 
-
-        panel.add(new JLabel(""));
+        // showSummary.addActionListener(this);
+        // panel.add(showSummary);
         JButton createVM = new JButton("Create VM");
         this.createVMButton = createVM;
 
         createVMButton.addActionListener(this);
         panel.add(createVMButton);
 
-
         return panel;
 
 
     }
 
+    // private JPanel summaryPanel(){
+    //     JPanel panel = new JPanel();
+    //     panel.setLayout(new GridLayout(2,1));
+    //     VMCreationObject vm;
+    //     if(vmName.getText().equals("")){
+    //         vm = new VMCreationObject();
+    //         vm.vmName = vmName.getText();
+
+
+    //     }else{
+    //         vm = new VMCreationObject();
+    //         vm.vmName = vmName.getText();
+    //     }
+
+    //     panel.add(new JLabel(vm.vmDetailsTable()));
+
+    //     JButton createVM = new JButton("Create VM");
+    //     this.createVMButton = createVM;
+
+    //     createVMButton.addActionListener(this);
+    //     panel.add(createVMButton);
+
+
+    //     return panel;
+    // }
+
     @Override
     public void actionPerformed(ActionEvent e) {
+
+        // if(e.getSource().equals(this.showSummary)){
+
+        //     parseVMSettings();
+
+        //     this.summarydialog = new JDialog();
+        //     summarydialog.setSize(600, 600);
+        //     summarydialog.setLocationRelativeTo(null);
+        //     summarydialog.add(summaryPanel());
+        //     summarydialog.setVisible(true);
+
+        // }
+
+
         if(e.getSource().equals(this.createVMButton)){
 
-            final VMCreationObject newVM = new VMCreationObject();
-            newVM.vmName = vmName.getText();
-            newVM.cpus = Integer.parseInt(vmCpus.getText());
-            newVM.ramInGB = Integer.parseInt(vmRam.getText());
-            newVM.suspendToDisk = "no";
-            newVM.suspendToMem = "no";
-            newVM.arch = vmArch.getSelectedItem().toString();
-            Disk disk1 = new Disk();
 
-            if(createNewDisk.isSelected()){
-                disk1.device = "disk";
-                disk1.type = "qcow2";
-                disk1.target = diskTarget.getSelectedItem().toString();
+            if(vmName.getText().equals("")){
+                System.out.println("Name must be set");
 
-
+            }else{
                 
-                disk1.source= VMController.createVMDiskthread(newVM.vmName, context, newDiskSize.getText(), diskFileLocation.getText());
-                newVM.devices.add(disk1);
-
-            }else{
-                disk1.device = "disk";
-                disk1.source = diskFileLocation.getText();
-                disk1.type = "qcow2";
-                disk1.target = diskTarget.getSelectedItem().toString();
-                newVM.devices.add(disk1);
+                VMCreationObject newVM = parseVMSettings();
+                // summarydialog.setVisible(false);
+                dialog.setVisible(false);
+                VMDOMCreatorProcessor.createNewVMDomain(newVM, vmLocation.getText(), context);
+    
+                DOMController.defineDomain(vmLocation.getText(), newVM.vmName, context);
+                context.refresh();   
             }
+
             
-
-
-    
-            if(!vmForwardedPorts.getText().equals("")){
-    
-                newVM.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1,"+vmForwardedPorts.getText()+" -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19 "+vmArguments.getText();
-    
-            }else{
-                newVM.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1 -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19 "+vmArguments.getText();
-    
-            }
-            
-            if(cdromFileLocation.getText().equals("")){
-
-            }else{
-                final Disk cdrom = new Disk();
-                cdrom.device = "cdrom";
-                cdrom.type = "raw";
-                cdrom.source = cdromFileLocation.getText();
-                cdrom.target = cdromTarget.getSelectedItem().toString();
-                newVM.devices.add(cdrom);
-            }
-
-
-            dialog.setVisible(false);
-            VMDOMCreatorProcessor.createNewVMDomain(newVM, vmLocation.getText(), context);
-
-            DOMController.defineDomain(vmLocation.getText(), newVM.vmName, context);
-            context.refresh();   
         }
      
+    }
+
+    private VMCreationObject parseVMSettings(){
+        final VMCreationObject newVM = new VMCreationObject();
+        newVM.vmName = vmName.getText();
+        if(!vmCpus.getText().equals("")){
+            newVM.cpus = Integer.parseInt(vmCpus.getText());
+        }
+        if(!vmRam.getText().equals("")){
+            newVM.ramInGB = Integer.parseInt(vmRam.getText());
+        }
+        
+        newVM.arch = vmArch.getSelectedItem().toString();
+        
+        newVM.suspendToDisk = "no";
+        newVM.suspendToMem = "no";
+        Disk disk1 = new Disk();
+    
+        if(createNewDisk.isSelected()){
+            disk1.device = "disk";
+            disk1.type = "qcow2";
+            disk1.target = diskTarget.getSelectedItem().toString();
+    
+    
+                    
+            disk1.source= VMController.createVMDiskthread(newVM.vmName, context, newDiskSize.getText(), diskFileLocation.getText());
+            newVM.devices.add(disk1);
+    
+        }else{
+            disk1.device = "disk";
+            disk1.source = diskFileLocation.getText();
+            disk1.type = "qcow2";
+            disk1.target = diskTarget.getSelectedItem().toString();
+            newVM.devices.add(disk1);
+        }
+                
+    
+    
+        
+        if(!vmForwardedPorts.getText().equals("")){
+        
+            newVM.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1,"+vmForwardedPorts.getText()+" -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19 "+vmArguments.getText();
+        
+        }else{
+            newVM.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1 -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19 "+vmArguments.getText();
+        
+        }
+                
+        if(cdromFileLocation.getText().equals("")){
+    
+        }else{
+            final Disk cdrom = new Disk();
+            cdrom.device = "cdrom";
+            cdrom.type = "raw";
+            cdrom.source = cdromFileLocation.getText();
+            cdrom.target = cdromTarget.getSelectedItem().toString();
+            newVM.devices.add(cdrom);
+        }
+
+        return newVM;
+
     }
 
 }

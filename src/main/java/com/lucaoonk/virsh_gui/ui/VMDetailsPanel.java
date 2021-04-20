@@ -32,6 +32,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
     private JButton stopVMButton;
     private JButton startVMButton;
     private JButton undefineVMButton;
+    private JButton forceShutdownbutton;
 
     public VMDetailsPanel(Context context) {
 
@@ -112,11 +113,20 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
         this.startVMButton = startbutton;
         startbutton.addActionListener(this);
 
+        JButton forceShutdownbutton = new JButton("Force shutdown VM");
+        forceShutdownbutton.setForeground(Color.RED);;
+
+        panel.add(forceShutdownbutton); // now add to jpanel
+        this.forceShutdownbutton = forceShutdownbutton;
+        forceShutdownbutton.addActionListener(this);
+
+
         JButton stopbutton = new JButton("Shutdown VM");
 
         panel.add(stopbutton); // now add to jpanel
         this.stopVMButton = stopbutton;
         stopbutton.addActionListener(this);
+
 
         return panel;
     }
@@ -142,6 +152,25 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
             }else{
                 VMController VMC = new VMController(context);
                 VMC.connectToVM(vm);
+            }
+        }
+
+        if(e.getSource().equals(this.forceShutdownbutton)){
+            if(!VMDetailsPanel.this.vm.isRunning()){
+                JDialog d = new JDialog(context.mainJFrame, "Error");
+  
+                // create a label
+                JLabel l = new JLabel("The vm is not running");
+      
+                d.add(l);
+      
+                // setsize of dialog
+                d.setSize(150, 150);
+                d.setLocationRelativeTo(null);
+                // set visibility of dialog
+                d.setVisible(true);
+            }else{
+                VMController.destroyVM(vm, context);
             }
         }
 
