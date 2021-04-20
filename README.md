@@ -52,3 +52,4 @@ Follow this awsome guide: https://www.naut.ca/blog/2020/08/26/ubuntu-vm-on-macos
 
 # Kown Issues:
 ~~- Default vm location not working properly~~ This should work fine now.
+- The MacOS app version shows blurry text but the jar file does not.
