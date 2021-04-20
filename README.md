@@ -14,7 +14,8 @@ Show resources assigned to a machine:
     - Type of storage
  - Forwarded Ports
  - Create / destroy machines:
-  - Configurator 
+ - Configurator:
+  - Add new diskfiles or select exsisting ones. 
 
 ## Depends on:
 - libvirt https://www.libvirt.org
@@ -39,7 +40,6 @@ Releases can be found here: https://github.com/LucaOonk/Virsh-Gui/releases
 Follow this awsome guide: https://www.naut.ca/blog/2020/08/26/ubuntu-vm-on-macos-with-libvirt-qemu/
 
 # Planned features:
-- Reworked VM-Configurator
 - Show disk size
 - Edit VM configuration:
   - Edit Vm resources
@@ -51,4 +51,4 @@ Follow this awsome guide: https://www.naut.ca/blog/2020/08/26/ubuntu-vm-on-macos
 - VM-usage graphs
 
 # Kown Issues:
-- Default vm location not working properly
+~~- Default vm location not working properly~~ This should work fine now.
