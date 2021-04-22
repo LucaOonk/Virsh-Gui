@@ -5,7 +5,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.net.URI;
 
 import javax.swing.JDialog;
@@ -14,6 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import com.lucaoonk.virsh_gui.Backend.Objects.*;
 import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessor;
@@ -21,7 +22,7 @@ import com.lucaoonk.virsh_gui.Backend.Processors.VMListProcessor;
 import com.lucaoonk.virsh_gui.UpdateChecker.UpdateChecker;
 
 
-public class MainFrame extends JFrame implements ActionListener {
+public class MainFrame extends JFrame implements ActionListener{
 
     /**
      *
@@ -37,7 +38,11 @@ public class MainFrame extends JFrame implements ActionListener {
 
     }
 
-    public void init() {
+    public static void exitProgram(){
+        System.exit(0);
+    }
+
+    public void init() throws Exception {
         this.context = new Context();
         this.mainFrame = new JFrame();
         this.context.mainJFrame = mainFrame;
@@ -47,6 +52,7 @@ public class MainFrame extends JFrame implements ActionListener {
         VMListProcessor t = new VMListProcessor(context);
 
         try {
+
             t.runCommand();
             // VMDDetailProcessor.startVMDetailthread(context);
 
@@ -55,38 +61,27 @@ public class MainFrame extends JFrame implements ActionListener {
             }
             // VMDOMProcessor.startVMDOMDetailthread(context);
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
-            e.printStackTrace();
             
             JDialog dialog = new JDialog();
+            JPanel panel = new JPanel();
             dialog.setTitle("An error occured!");
-            JLabel label = new JLabel("Make sure the dependencies are installed!");
-            
-            dialog.add(label);
+            JLabel label = new JLabel("<html><b>Make sure the dependencies are installed!</b></html>");
+            panel.setBorder(new EmptyBorder(10,10,10,10));
+            panel.add(label);
+            dialog.add(panel);
             dialog.setSize(300, 150);
             dialog.setLocationRelativeTo(null);
             dialog.setVisible(true);
             dialog.setAlwaysOnTop(true);
-            dialog.setDefaultCloseOperation(EXIT_ON_CLOSE);
+            dialog.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+            throw e;
         }
-
-        // java.net.URL url = ClassLoader.getSystemResource("resources/images/cloud.png");
-        // Toolkit kit = Toolkit.getDefaultToolkit();
-        // Image img = kit.createImage(url);
-
-        // this.mainFrame.setIconImage(img);
-
-        // packContent(mainFrame);
 
     }
 
-    // public void packContent(JFrame mainFrame) {
-
-    //     mainFrame.getContentPane().add(container);
-        
-
-    // }
 
     public void showMainFrame() throws InterruptedException {
         this.mainFrame = new JFrame();
