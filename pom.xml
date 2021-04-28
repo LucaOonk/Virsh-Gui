@@ -5,7 +5,7 @@
   <groupId>com.lucaoonk.virsh_gui</groupId>
   <artifactId>virsh_gui</artifactId>
   <packaging>jar</packaging>
-  <version>0.4</version>
+  <version>0.4.1</version>
   <name>virsh_gui</name>
   <url>http://maven.apache.org</url>
 
