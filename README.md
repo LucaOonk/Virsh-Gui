@@ -36,20 +36,17 @@ Finally start the libvirt service, with `brew services start libvirt`. It will s
 # Download:
 Releases can be found here: https://github.com/LucaOonk/Virsh-Gui/releases
 
-### How to add a machine:
-Follow this awsome guide: https://www.naut.ca/blog/2020/08/26/ubuntu-vm-on-macos-with-libvirt-qemu/
-
 # Planned features:
 - Show disk size
 - Edit VM configuration:
   - Edit Vm resources
   - Add/remove disks
 - Darkmode
-- Working default save location for the xml files
+~~- Working default save location for the xml files~~
 
 ## Distant future features:
 - VM-usage graphs
 
-# Kown Issues:
-~~- Default vm location not working properly~~ This should work fine now.
-- The MacOS app version shows blurry text but the jar file does not.
+# Known Issues:
+~~- Default vm location not working properly~~ 
+~~- The MacOS app version shows blurry text but the jar file does not.~~ 
