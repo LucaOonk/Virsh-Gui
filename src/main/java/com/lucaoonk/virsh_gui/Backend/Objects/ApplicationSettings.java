@@ -21,6 +21,9 @@ public class ApplicationSettings{
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("checkForUpdates", context.checkForUpdates);
         jsonObject.put("defaultSaveLocation", context.defaultSaveLocation);
+        jsonObject.put("windowHeight", context.windowHeight.intValue());
+        jsonObject.put("windowWidth", context.windowWidth.intValue());
+        jsonObject.put("autoSizeWindow", context.autoSizeWindow);
 
         File location = new File(settingsFileLocation);
         location.getParentFile().mkdirs();
@@ -79,14 +82,26 @@ public class ApplicationSettings{
                 for (Map.Entry<?, ?> entry : map.entrySet()) {
                     if(entry.getKey().equals("checkForUpdates")){
                         context.checkForUpdates = (Boolean) entry.getValue();
-
-                        System.out.println(context.checkForUpdates);
-
                     }
 
                     if(entry.getKey().equals("defaultSaveLocation")){
                         context.defaultSaveLocation = (String) entry.getValue();
-                        System.out.println(context.defaultSaveLocation);
+                    }
+
+                    if(entry.getKey().equals("windowHeight")){
+                        Double heightDouble = (Double) entry.getValue();
+                        context.windowHeight = heightDouble.intValue();
+
+                    }
+                    if(entry.getKey().equals("windowWidth")){
+                        Double widthDouble = (Double) entry.getValue();
+
+                        context.windowWidth = widthDouble.intValue();
+
+                    }
+                    if(entry.getKey().equals("autoSizeWindow")){
+
+                        context.autoSizeWindow = (Boolean) entry.getValue();
 
                     }
                 }

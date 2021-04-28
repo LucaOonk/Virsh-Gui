@@ -19,6 +19,7 @@ import org.xml.sax.SAXException;
 import com.lucaoonk.virsh_gui.Backend.Objects.Device;
 import com.lucaoonk.virsh_gui.Backend.Objects.Disk;
 import com.lucaoonk.virsh_gui.Backend.Objects.VM;
+import com.lucaoonk.virsh_gui.CrashReporter.CrashReporter;
 
 public class VMDOMProcessor {
     
@@ -98,7 +99,7 @@ public class VMDOMProcessor {
 
         } catch (IOException | ParserConfigurationException | SAXException e1) {
             // TODO Auto-generated catch block
-            e1.printStackTrace();
+            CrashReporter.logCrash(e1);
         }
 
 

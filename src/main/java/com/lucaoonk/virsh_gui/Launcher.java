@@ -7,7 +7,6 @@ import javax.swing.SwingUtilities;
 import com.lucaoonk.virsh_gui.CrashReporter.CrashReporter;
 import com.lucaoonk.virsh_gui.ui.MainFrame;
 
-
 public class Launcher {
 
     public static void main(String[] args) throws NoSuchAlgorithmException, InterruptedException, IOException {

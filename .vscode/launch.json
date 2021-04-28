@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Notification",
+            "request": "launch",
+            "mainClass": "com.lucaoonk.virsh_gui.Backend.Notification",
+            "projectName": "virsh_gui"
+        },
+        {
+            "type": "java",
+            "name": "Launch APNSService",
+            "request": "launch",
+            "mainClass": "com.lucaoonk.virsh_gui.Backend.APNS.APNSService",
+            "projectName": "virsh_gui"
+        },
+        {
+            "type": "java",
             "name": "Launch Launcher",
             "request": "launch",
             "mainClass": "com.lucaoonk.virsh_gui.Launcher",

@@ -104,12 +104,6 @@ public class ScrollableVMList extends JScrollPane implements ActionListener{
             configurator.show();
         }
 
-        if(e.getSource().equals(this.showVMInfoButton)){
-
-            context.updateCurrentSelectedVM(vm);
-            System.out.println("Selected VM: "+context.getCurrentSelectedVM().getDomain());
-            context.refresh();
-        }
         
     }
     

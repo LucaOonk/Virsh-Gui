@@ -22,6 +22,9 @@ public class ApplicationSettingsView implements ActionListener{
     private JTextArea defaultSaveLocationTextArea;
     private JCheckBox checkForUpdatesCheckbox;
     private JDialog settingsDialog;
+    private JTextArea windowHeight;
+    private JTextArea windowWidth;
+    private JCheckBox autoSizeWindow;
     
 
     public void show(Context context){
@@ -31,17 +34,18 @@ public class ApplicationSettingsView implements ActionListener{
 
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        panel.setLayout(new GridLayout(3,2));
+        panel.setLayout(new GridLayout(6,2));
 
         settingsDialog.setTitle("Virsh GUI settings");
 
         showDefaultSaveLocation(panel, context);
 
         showCheckForUpdatesSetting(panel, context);
+        showWindowSizeSettings(panel, context);
 
 
         addApplySettings(panel, context);
-
+        
         settingsDialog.add(panel);
         settingsDialog.setSize(400, 500);
         settingsDialog.setLocationRelativeTo(null);
@@ -81,12 +85,35 @@ public class ApplicationSettingsView implements ActionListener{
 
     }
 
+    private void showWindowSizeSettings(JPanel settingsPane, Context context){
+
+        settingsPane.add(new JLabel("Window Heigt: "));
+        JTextArea windowHeight = new JTextArea(context.windowHeight.toString());
+        this.windowHeight = windowHeight;
+        settingsPane.add(windowHeight);
+
+        settingsPane.add(new JLabel("Window Width: "));
+        JTextArea windowWidth = new JTextArea(context.windowWidth.toString());
+        this.windowWidth = windowWidth;
+        settingsPane.add(windowWidth);
+
+        settingsPane.add(new JLabel("<html>If disabled the width and height defined above will be used.</html>"));
+
+        JCheckBox autoSizeWindow = new JCheckBox("Auto size window");
+        
+        autoSizeWindow.setSelected(context.autoSizeWindow);
+        this.autoSizeWindow = autoSizeWindow;
+
+        settingsPane.add(autoSizeWindow);
+    }
+
     @Override
     public void actionPerformed(ActionEvent e){
 
         // TODO make changes persistant
 
         context.checkForUpdates = checkForUpdatesCheckbox.isSelected();
+        context.autoSizeWindow = autoSizeWindow.isSelected();
 
 
         if(context.defaultSaveLocation.equals(defaultSaveLocationTextArea.getText())){
@@ -94,7 +121,19 @@ public class ApplicationSettingsView implements ActionListener{
         }else{
             context.defaultSaveLocation = defaultSaveLocationTextArea.getText();
         }
+
+        if(context.windowHeight.equals(windowHeight.getText())){
+
+        }else{
+            context.windowHeight = Integer.parseInt(windowHeight.getText());
+        }       
         
+        if(context.windowWidth.equals(windowWidth.getText())){
+
+        }else{
+            context.windowWidth = Integer.parseInt(windowWidth.getText());
+        }
+
         ApplicationSettings.writeSettings(context);
         this.settingsDialog.setVisible(false);
     }

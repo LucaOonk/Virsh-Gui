@@ -8,6 +8,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
@@ -25,19 +26,12 @@ import com.lucaoonk.virsh_gui.Backend.Objects.VMCreationObject;
 
 public class VMDOMCreatorProcessor {
 
-    public static void main(String[] args) throws ParserConfigurationException,
-            TransformerException {
-
-
-
-    }
-
-    public static void createNewVMDomain(VMCreationObject vmCreationObject, String saveLocation, Context context){
+    public static void createNewVMDomain(VMCreationObject vmCreationObject, String saveLocation, Context context) throws ParserConfigurationException, TransformerException{
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
-        try {
-            builder = factory.newDocumentBuilder();
+
+        builder = factory.newDocumentBuilder();
             Document doc = builder.newDocument();
             Element root = doc.createElement("domain");
             root.setAttribute("type","qemu");
@@ -129,12 +123,6 @@ public class VMDOMCreatorProcessor {
                 transf.transform(source, file);
             }
 
-
-        } catch (ParserConfigurationException | TransformerException  e) {
-
-            e.printStackTrace();
-        } 
-        
         
     }
 

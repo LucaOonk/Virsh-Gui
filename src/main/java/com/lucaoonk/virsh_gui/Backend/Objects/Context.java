@@ -2,7 +2,8 @@ package com.lucaoonk.virsh_gui.Backend.Objects;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import javax.swing.JFrame;
 
 import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMProcessorThread;
@@ -23,6 +24,9 @@ public class Context {
     private static final String versionString = "0.4";
     public Boolean checkForUpdates;
     private String applicationDefaultSaveLocation;
+    public Integer windowHeight;
+    public Integer windowWidth;
+    public boolean autoSizeWindow;
 
 
     public Context(){
@@ -34,6 +38,9 @@ public class Context {
         this.defaultSaveLocation=System.getProperty("user.home")+"/vms/";
         this.applicationDefaultSaveLocation=System.getProperty("user.home")+"/vms/";
 
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        windowHeight = (screenSize.height / 2);
+        windowWidth = (screenSize.width / 2);
     }
 
     public void updateVMList(ArrayList<VM> vmList){

@@ -8,12 +8,15 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 
 import com.lucaoonk.virsh_gui.Backend.Controllers.DOMController;
 import com.lucaoonk.virsh_gui.Backend.Objects.Context;
 import com.lucaoonk.virsh_gui.Backend.Objects.Disk;
 import com.lucaoonk.virsh_gui.Backend.Objects.VMCreationObject;
 import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMCreatorProcessor;
+import com.lucaoonk.virsh_gui.CrashReporter.CrashReporter;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -140,8 +143,14 @@ public class VMConfigurator extends JDialog{
                 newVM.devices.add(cdrom);
 
                 dialog.setVisible(false);
-                VMDOMCreatorProcessor.createNewVMDomain(newVM, vmLocation.getText(), context);
-                DOMController.defineDomain(vmLocation.getText(), newVM.vmName, context);
+                try {
+                    VMDOMCreatorProcessor.createNewVMDomain(newVM, vmLocation.getText(), context);
+                    DOMController.defineDomain(vmLocation.getText(), newVM.vmName, context);
+
+                } catch (Exception e1) {
+                    // TODO Auto-generated catch block
+                    CrashReporter.logCrash(e1); 
+                }
                 context.refresh();
 
             }

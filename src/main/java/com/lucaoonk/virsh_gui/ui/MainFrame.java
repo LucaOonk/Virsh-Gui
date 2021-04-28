@@ -3,6 +3,7 @@ package com.lucaoonk.virsh_gui.ui;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.desktop.SystemEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.net.URI;
@@ -22,7 +23,7 @@ import com.lucaoonk.virsh_gui.Backend.Processors.VMListProcessor;
 import com.lucaoonk.virsh_gui.UpdateChecker.UpdateChecker;
 
 
-public class MainFrame extends JFrame implements ActionListener{
+public class MainFrame extends JFrame implements ActionListener, SystemEventListener{
 
     /**
      *
@@ -46,6 +47,7 @@ public class MainFrame extends JFrame implements ActionListener{
         this.context = new Context();
         this.mainFrame = new JFrame();
         this.context.mainJFrame = mainFrame;
+        // create an instance of the mac osx Application class
 
         ApplicationSettings.readSettingsFile(context);
 
@@ -86,6 +88,7 @@ public class MainFrame extends JFrame implements ActionListener{
     public void showMainFrame() throws InterruptedException {
         this.mainFrame = new JFrame();
 
+        mainFrame.getContentPane().setBackground(java.awt.Color.black);
 
         mainFrame.setDefaultCloseOperation(EXIT_ON_CLOSE);
         mainFrame.setTitle("Virsh GUI");
@@ -145,11 +148,16 @@ public class MainFrame extends JFrame implements ActionListener{
         // mainFrame.setJMenuBar(menu());
         mainFrame.add(new MainContent(context).getContent());
 
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        int height = screenSize.height;
-        int width = screenSize.width;
-        mainFrame.setSize(width / 2, height / 2);
+        if(context.autoSizeWindow){
+            Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+            Integer windowHeight = (screenSize.height / 2);
+            Integer windowWidth = (screenSize.width / 2);
+            mainFrame.setSize(windowWidth, windowHeight);
 
+        }else{
+            mainFrame.setSize(context.windowWidth, context.windowHeight);
+
+        }
         mainFrame.setLocationRelativeTo(null);
         mainFrame.setVisible(true);
         

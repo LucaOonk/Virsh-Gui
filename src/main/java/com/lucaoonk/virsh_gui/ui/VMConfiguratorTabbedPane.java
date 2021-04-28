@@ -1,10 +1,8 @@
 package com.lucaoonk.virsh_gui.ui;
 
-import javax.swing.Action;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -15,16 +13,14 @@ import javax.swing.UIManager;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.File;
 
 import com.lucaoonk.virsh_gui.Backend.Controllers.DOMController;
 import com.lucaoonk.virsh_gui.Backend.Controllers.VMController;
 import com.lucaoonk.virsh_gui.Backend.Objects.Context;
-import com.lucaoonk.virsh_gui.Backend.Objects.Device;
 import com.lucaoonk.virsh_gui.Backend.Objects.Disk;
-import com.lucaoonk.virsh_gui.Backend.Objects.VM;
 import com.lucaoonk.virsh_gui.Backend.Objects.VMCreationObject;
 import com.lucaoonk.virsh_gui.Backend.Processors.VMDOMCreatorProcessor;
+import com.lucaoonk.virsh_gui.CrashReporter.CrashReporter;
 
 public class VMConfiguratorTabbedPane implements ActionListener {
 
@@ -95,16 +91,6 @@ public class VMConfiguratorTabbedPane implements ActionListener {
         
         tabs.addTab("4. Final Step", finalPane);
 
-        // tabs.addTab("Select Course", selectCourse);
-        
-        // // Adding JPanels to JTabbedPane
-        // tabs.addTab("Listing", new JPanel());
-        // tabs.addTab("Comment", new JTextArea(10, 40));
-
-        // tabs.addTab("Register", new JPanel());
-        // tabs.addTab("Contact Us", new JPanel());
-
-        // tabs.addTab("More..", new JPanel());
         this.contentPane.add(tabs);
 
         return contentPane;
@@ -227,11 +213,6 @@ public class VMConfiguratorTabbedPane implements ActionListener {
         JPanel panel = new JPanel();
         panel.setLayout(new FlowLayout());
 
-        // JButton showSummary = new JButton("Show Summary");
-        // this.showSummary = showSummary;
-
-        // showSummary.addActionListener(this);
-        // panel.add(showSummary);
         JButton createVM = new JButton("Create VM");
         this.createVMButton = createVM;
 
@@ -243,47 +224,8 @@ public class VMConfiguratorTabbedPane implements ActionListener {
 
     }
 
-    // private JPanel summaryPanel(){
-    //     JPanel panel = new JPanel();
-    //     panel.setLayout(new GridLayout(2,1));
-    //     VMCreationObject vm;
-    //     if(vmName.getText().equals("")){
-    //         vm = new VMCreationObject();
-    //         vm.vmName = vmName.getText();
-
-
-    //     }else{
-    //         vm = new VMCreationObject();
-    //         vm.vmName = vmName.getText();
-    //     }
-
-    //     panel.add(new JLabel(vm.vmDetailsTable()));
-
-    //     JButton createVM = new JButton("Create VM");
-    //     this.createVMButton = createVM;
-
-    //     createVMButton.addActionListener(this);
-    //     panel.add(createVMButton);
-
-
-    //     return panel;
-    // }
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        // if(e.getSource().equals(this.showSummary)){
-
-        //     parseVMSettings();
-
-        //     this.summarydialog = new JDialog();
-        //     summarydialog.setSize(600, 600);
-        //     summarydialog.setLocationRelativeTo(null);
-        //     summarydialog.add(summaryPanel());
-        //     summarydialog.setVisible(true);
-
-        // }
-
 
         if(e.getSource().equals(this.createVMButton)){
 
@@ -296,10 +238,17 @@ public class VMConfiguratorTabbedPane implements ActionListener {
                 VMCreationObject newVM = parseVMSettings();
                 // summarydialog.setVisible(false);
                 dialog.setVisible(false);
-                VMDOMCreatorProcessor.createNewVMDomain(newVM, vmLocation.getText(), context);
+                try {
+                    VMDOMCreatorProcessor.createNewVMDomain(newVM, vmLocation.getText(), context);
+                    DOMController.defineDomain(vmLocation.getText(), newVM.vmName, context);
+                    context.refresh();   
+
+                } catch (Exception e1) {
+                    CrashReporter.logCrash(e1);
+                } 
+                
     
-                DOMController.defineDomain(vmLocation.getText(), newVM.vmName, context);
-                context.refresh();   
+
             }
 
             

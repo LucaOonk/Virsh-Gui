@@ -8,7 +8,7 @@ import com.lucaoonk.virsh_gui.Backend.Objects.Context;
 
 public class DOMController {
 
-    public static void defineDomain(String domainLocation, String domainName, Context context){
+    public static void defineDomain(String domainLocation, String domainName, Context context) throws Exception{
 
         try {
             if(domainLocation.equals("")){
@@ -29,10 +29,10 @@ public class DOMController {
  
             }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             // TODO Auto-generated catch block
 
-            e.printStackTrace();
+            throw e;
         }
 
 
@@ -55,7 +55,7 @@ public class DOMController {
 
     }
 
-    public static void createDomain(String domainLocation, String domainName, Context context){
+    public static void createDomain(String domainLocation, String domainName, Context context) throws IOException{
 
         try {
             Process process = Runtime.getRuntime().exec("virsh create "+domainLocation+domainName+".xml");
@@ -70,7 +70,7 @@ public class DOMController {
         } catch (IOException e) {
             // TODO Auto-generated catch block
 
-            e.printStackTrace();
+            throw e;
         }
 
 

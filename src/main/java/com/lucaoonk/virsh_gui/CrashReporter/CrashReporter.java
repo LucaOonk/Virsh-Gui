@@ -26,11 +26,7 @@ import com.lucaoonk.virsh_gui.ui.MainFrame;
 import org.json.simple.JSONObject;
 
 public class CrashReporter{
-    
 
-    public static void main(String[] args) {
-        CrashReporter.logCrash(new Exception());
-    }
 
     public static void logCrash(Exception exception) {
 

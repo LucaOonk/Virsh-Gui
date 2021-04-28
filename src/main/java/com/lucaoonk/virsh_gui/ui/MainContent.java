@@ -21,7 +21,7 @@ public class MainContent extends JPanel{
         this.setLayout(new BorderLayout());
         this.add(new ScrollableVMList(context).getPanel(), BorderLayout.WEST);
         this.add(new VMDetailsPanel(context).getPanel(), BorderLayout.CENTER);
-
+        this.setBackground(java.awt.Color.BLACK);
         // this.add(new VMListTablePanel(context).getPanel(), BorderLayout.EAST);
 
         return this;
