@@ -46,7 +46,6 @@ Releases can be found here: https://github.com/LucaOonk/Virsh-Gui/releases
   - Edit Vm resources
   - Add/remove disks
 - Darkmode
-~~- Working default save location for the xml files~~
 
 ## Distant future features:
 - VM-usage graphs
