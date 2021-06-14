@@ -22,6 +22,10 @@ Show resources assigned to a machine:
 - QEMU https://www.qemu.org
 - virt-viewer
 
+## Compatibility
+Works on MacOS 11.
+MacOS 12 is not supported for now as the dependencies are not ready yet.
+
 ## How to install dependencies on MacOS:
 - First, install homebrew, which is a package manager for macOS.
 - Run `brew install qemu gcc libvirt virt-viewer`.
@@ -48,5 +52,4 @@ Releases can be found here: https://github.com/LucaOonk/Virsh-Gui/releases
 - VM-usage graphs
 
 # Known Issues:
-~~- Default vm location not working properly~~ 
-~~- The MacOS app version shows blurry text but the jar file does not.~~ 
+
