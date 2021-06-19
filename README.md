@@ -2,7 +2,7 @@
 A gui for QEMU/Libvirt made in Java so you can start, stop, add, remove to virsh and connect to them.
 I made this because i had troubles getting the virt-manager to work on MacOS, so i made my own.
 
-This is far from production ready so be ware.
+This is far from production ready so beware.
 
 ![alt text](https://github.com/LucaOonk/LucaOonk.github.io/blob/master/depictions/Virsh-GUI/Interface.png)
 
