@@ -19,6 +19,15 @@ public class MainContent extends JPanel{
     public JPanel getContent(){
 
         this.setLayout(new BorderLayout());
+
+        if(context.local){
+            this.add(new LocalBanner().getPanel(context), BorderLayout.NORTH);
+
+        }else{
+            this.add(new RemoteBanner(context).getPanel(), BorderLayout.NORTH);
+
+        }
+
         this.add(new ScrollableVMList(context).getPanel(), BorderLayout.WEST);
         this.add(new VMDetailsPanel(context).getPanel(), BorderLayout.CENTER);
         this.setBackground(java.awt.Color.BLACK);

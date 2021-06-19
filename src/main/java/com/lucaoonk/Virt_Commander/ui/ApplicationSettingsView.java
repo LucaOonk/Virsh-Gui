@@ -25,6 +25,8 @@ public class ApplicationSettingsView implements ActionListener{
     private JTextArea windowHeight;
     private JTextArea windowWidth;
     private JCheckBox autoSizeWindow;
+    private JCheckBox localCheckbox;
+    private JTextArea remoteAdressText;
     
 
     public void show(Context context){
@@ -34,7 +36,7 @@ public class ApplicationSettingsView implements ActionListener{
 
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        panel.setLayout(new GridLayout(6,2));
+        panel.setLayout(new GridLayout(8,2));
 
         settingsDialog.setTitle("Virsh GUI settings");
 
@@ -42,7 +44,8 @@ public class ApplicationSettingsView implements ActionListener{
 
         showCheckForUpdatesSetting(panel, context);
         showWindowSizeSettings(panel, context);
-
+        showLocalSettings(panel, context);
+        showRemoteAdress(panel, context);
 
         addApplySettings(panel, context);
         
@@ -52,6 +55,26 @@ public class ApplicationSettingsView implements ActionListener{
         settingsDialog.setVisible(true);
 
         this.settingsDialog = settingsDialog;
+    }
+
+    private void showLocalSettings(JPanel settingsPane, Context context) {
+        settingsPane.add(new JLabel("<html>If disabled uses the specified remote address, else the local machine is used</html>"));
+
+        JCheckBox localCheckBox = new JCheckBox("Use local");
+        
+        localCheckBox.setSelected(context.local);
+        this.localCheckbox= localCheckBox;
+
+        settingsPane.add(localCheckBox);
+    }
+
+    private void showRemoteAdress(JPanel settingsPane, Context context){
+
+        settingsPane.add(new JLabel("Remote Address: "));
+        JTextArea remoteAdressText = new JTextArea(context.remoteAddress);
+        this.remoteAdressText = remoteAdressText;
+        settingsPane.add(remoteAdressText);
+
     }
 
     private void showCheckForUpdatesSetting(JPanel settingsPane, Context context){
@@ -114,6 +137,13 @@ public class ApplicationSettingsView implements ActionListener{
 
         context.checkForUpdates = checkForUpdatesCheckbox.isSelected();
         context.autoSizeWindow = autoSizeWindow.isSelected();
+        context.local = localCheckbox.isSelected();
+
+        if(context.remoteAddress.equals(remoteAdressText.getText())){
+
+        }else{
+            context.remoteAddress = remoteAdressText.getText();
+        }
 
 
         if(context.defaultSaveLocation.equals(defaultSaveLocationTextArea.getText())){

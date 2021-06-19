@@ -32,7 +32,7 @@ public class CrashReporter{
         LocalDateTime crashTime= getDateTime();
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd:MM:yyyy-HH:mm:ss");  
-        String file=System.getProperty("user.home") + "/Library/Application Support/Virsh_GUI/crashlogs/crash-"+dtf.format(crashTime)+".log";
+        String file=System.getProperty("user.home") + "/Library/Application Support/Virt_Commander/crashlogs/crash-"+dtf.format(crashTime)+".log";
         
         File crashFile = new File(file);
         crashFile.getParentFile().mkdirs();

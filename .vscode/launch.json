@@ -6,88 +6,10 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Launch VMDomstatsProcessor",
-            "request": "launch",
-            "mainClass": "com.lucaoonk.virsh_gui.Backend.Processors.VMDomstatsProcessor",
-            "projectName": "virsh_gui"
-        },
-        {
-            "type": "java",
-            "name": "Launch LoadingScreen",
-            "request": "launch",
-            "mainClass": "com.lucaoonk.virsh_gui.ui.LoadingScreen",
-            "projectName": "virsh_gui"
-        },
-        {
-            "type": "java",
-            "name": "Launch Notification",
-            "request": "launch",
-            "mainClass": "com.lucaoonk.virsh_gui.Backend.Notification",
-            "projectName": "virsh_gui"
-        },
-        {
-            "type": "java",
-            "name": "Launch APNSService",
-            "request": "launch",
-            "mainClass": "com.lucaoonk.virsh_gui.Backend.APNS.APNSService",
-            "projectName": "virsh_gui"
-        },
-        {
-            "type": "java",
             "name": "Launch Launcher",
             "request": "launch",
-            "mainClass": "com.lucaoonk.virsh_gui.Launcher",
+            "mainClass": "com.lucaoonk.Virt_Commander.Launcher",
             "projectName": "virsh_gui"
-        },
-        {
-            "type": "java",
-            "name": "Launch ApplicationSettings",
-            "request": "launch",
-            "mainClass": "com.lucaoonk.virsh_gui.Backend.Objects.ApplicationSettings",
-            "projectName": "virsh_gui"
-        },
-        {
-            "type": "java",
-            "name": "Launch MemStatsGraph",
-            "request": "launch",
-            "mainClass": "com.lucaoonk.virsh_gui.ui.Graphs.MemStatsGraph",
-            "projectName": "virsh_gui"
-        },
-        {
-            "type": "java",
-            "name": "Launch UpdateChecker",
-            "request": "launch",
-            "mainClass": "com.lucaoonk.virsh_gui.UpdateChecker.UpdateChecker",
-            "projectName": "virsh_gui"
-        },
-        {
-            "type": "java",
-            "name": "Launch Launcher",
-            "request": "launch",
-            "mainClass": "com.lucaoonk.virsh_gui.Launcher",
-            "projectName": "Virsh-Gui_190f4f02"
-        },
-        {
-            "type": "java",
-            "name": "Launch VMDOMCreatorProcessor",
-            "request": "launch",
-            "mainClass": "Backend.Processors.VMDOMCreatorProcessor",
-            "projectName": "Virsh-Gui_190f4f02"
-        },
-        {
-            "type": "java",
-            "name": "Launch VMDOMProcessor",
-            "request": "launch",
-            "mainClass": "Backend.Processors.VMDOMProcessor",
-            "projectName": "Virsh-Gui_190f4f02"
-        },
-        {
-            "type": "java",
-            "name": "Launch Launcher",
-            "request": "launch",
-            "mainClass": "Launcher",
-            "projectName": "Virsh-Gui_190f4f02",
-            "vmArgs": "-Xdock:name='Virsh GUI'"
         }
     ]
 }

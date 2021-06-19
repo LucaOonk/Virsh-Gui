@@ -96,6 +96,12 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
             
         JButton button = new JButton("Connect to VM");
         this.connectVMButton = button;
+        if(vm.isRunning() && context.local){
+            connectVMButton.setEnabled(true);
+        }else{
+            connectVMButton.setEnabled(false);
+        }
+
         panel.add(button); // now add to jpanel
 
         button.addActionListener(this);
@@ -115,18 +121,26 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
 
         JButton forceShutdownbutton = new JButton("Force shutdown VM");
         forceShutdownbutton.setForeground(Color.RED);;
-
         panel.add(forceShutdownbutton); // now add to jpanel
         this.forceShutdownbutton = forceShutdownbutton;
         forceShutdownbutton.addActionListener(this);
 
+        if(vm.isRunning()){
+            forceShutdownbutton.setEnabled(true);
+        }else{
+            forceShutdownbutton.setEnabled(false);
+        }
 
         JButton stopbutton = new JButton("Shutdown VM");
 
         panel.add(stopbutton); // now add to jpanel
         this.stopVMButton = stopbutton;
         stopbutton.addActionListener(this);
-
+        if(vm.isRunning()){
+            stopbutton.setEnabled(true);
+        }else{
+            stopbutton.setEnabled(false);
+        }
 
         return panel;
     }
@@ -189,6 +203,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
                 // set visibility of dialog
                 d.setVisible(true);
             }else{
+                
                 VMController VMC = new VMController(context);
                 VMC.startVM(VMDetailsPanel.this.vm);
             }

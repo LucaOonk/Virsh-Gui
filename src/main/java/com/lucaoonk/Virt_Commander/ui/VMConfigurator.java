@@ -15,7 +15,7 @@ import com.lucaoonk.Virt_Commander.Backend.Controllers.DOMController;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Disk;
 import com.lucaoonk.Virt_Commander.Backend.Objects.VMCreationObject;
-import com.lucaoonk.Virt_Commander.Backend.Processors.VMDOMCreatorProcessor;
+import com.lucaoonk.Virt_Commander.Backend.Processors.Local.VMDOMCreatorProcessor;
 import com.lucaoonk.Virt_Commander.CrashReporter.CrashReporter;
 
 import java.awt.*;

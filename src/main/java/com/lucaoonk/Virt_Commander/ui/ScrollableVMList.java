@@ -48,11 +48,9 @@ public class ScrollableVMList extends JScrollPane implements ActionListener{
         // now add anonymous action listener
         refreshButton.addActionListener(this);
 
-
           for (VM vm : context.getVMList()) {
 
             this.vm = vm;
-
             // content.add(new JLabel(vm.getID().toString())); // now add to jpanel
 
             if(vm.isRunning()){
@@ -75,6 +73,9 @@ public class ScrollableVMList extends JScrollPane implements ActionListener{
         JButton button = new JButton("add New VM");
         content.add(button); // now add to jpanel
         this.addNewVMButton = button;
+        if(!context.local){
+            addNewVMButton.setEnabled(false);
+        }
         // now add anonymous action listener
         button.addActionListener(this);
 

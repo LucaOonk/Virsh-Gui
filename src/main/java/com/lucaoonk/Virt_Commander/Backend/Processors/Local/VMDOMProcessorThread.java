@@ -1,4 +1,4 @@
-package com.lucaoonk.Virt_Commander.Backend.Processors;
+package com.lucaoonk.Virt_Commander.Backend.Processors.Local;
 
 import javax.swing.SwingWorker;
 

@@ -14,7 +14,7 @@ import org.json.simple.JSONObject;
 
 public class ApplicationSettings{
 
-    private static final String settingsFileLocation = System.getProperty("user.home") + "/Library/Application Support/Virsh_GUI/settings.json";
+    private static final String settingsFileLocation = System.getProperty("user.home") + "/Library/Application Support/Virt_Commander/settings.json";
 
     public static void writeSettings(Context context){
         
@@ -24,6 +24,9 @@ public class ApplicationSettings{
         jsonObject.put("windowHeight", context.windowHeight.intValue());
         jsonObject.put("windowWidth", context.windowWidth.intValue());
         jsonObject.put("autoSizeWindow", context.autoSizeWindow);
+        jsonObject.put("local", context.local);
+        jsonObject.put("remoteAddress", context.remoteAddress);
+
 
         File location = new File(settingsFileLocation);
         location.getParentFile().mkdirs();
@@ -104,6 +107,16 @@ public class ApplicationSettings{
                         context.autoSizeWindow = (Boolean) entry.getValue();
 
                     }
+                    if(entry.getKey().equals("local")){
+
+                        context.local = (Boolean) entry.getValue();
+
+                    }
+                    if(entry.getKey().equals("remoteAddress")){
+
+                        context.remoteAddress = (String) entry.getValue();
+
+                    }
                 }
             
                 // close reader
@@ -114,7 +127,7 @@ public class ApplicationSettings{
             }
             
         }else{
-            System.out.println("File does not exists");
+            System.out.println("Settings-File does not exists. Using defaults");
 
         }
 

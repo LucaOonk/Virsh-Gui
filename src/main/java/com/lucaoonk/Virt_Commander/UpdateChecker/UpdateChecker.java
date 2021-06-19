@@ -79,12 +79,13 @@ public class UpdateChecker extends SwingWorker{
         System.out.println("Latest version: "+ latestVersion);
 
         if(Context.getVersion().equals(latestVersion)){
-
+            Context.updateAvailable = false;
             return false;
 
         }else{
             
             Context.latestVersion = latestVersion;
+            Context.updateAvailable = true;
             return true;
 
 

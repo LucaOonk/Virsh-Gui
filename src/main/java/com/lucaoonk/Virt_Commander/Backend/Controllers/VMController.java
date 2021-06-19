@@ -28,14 +28,27 @@ public class VMController {
     public void startVM(VM vm){
         final VM vmToStart = vm;
 
-        VMController.startVMthread(vmToStart, context);
+        if(context.local){
+            VMController.startVMthread(vmToStart, context);
+
+        }else{
+            RemoteVMController.startVm(vm, context.remoteAddress);
+
+        }
+
 
     }
 
     public void stopVM(VM vm){
 
         final VM vmToStop = vm;
-        VMController.stopVMthread(vmToStop, context);
+        if(context.local){
+            VMController.stopVMthread(vmToStop, context);
+        }else{
+            RemoteVMController.stopVM(vm, context.remoteAddress);
+        }
+
+
 
     }
 

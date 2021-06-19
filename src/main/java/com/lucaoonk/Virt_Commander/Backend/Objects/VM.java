@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class VM {
     
-    private String domain;
+    private String name;
     private Integer id;
     private Boolean isRunning;
     private String UUID;
@@ -15,17 +15,17 @@ public class VM {
     public String vncPort;
     public String vncIP;
 
-    public VM(String domain){
+    public VM(String name){
 
-        this.domain = domain;
+        this.name = name;
         this.devices = new ArrayList<Device>();
         this.portsForwarded = new ArrayList<String>();
 
     }
 
-    public VM(String domain, Integer ID){
+    public VM(String name, Integer ID){
 
-        this.domain = domain;
+        this.name = name;
         this.id = ID;
         this.isRunning = true;    
         this.devices = new ArrayList<Device>();
@@ -54,7 +54,7 @@ public class VM {
 
 
     public String getDomain(){
-        return this.domain;
+        return this.name;
     }
 
     public Integer getID(){
