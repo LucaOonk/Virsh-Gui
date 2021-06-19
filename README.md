@@ -18,6 +18,7 @@ Show resources assigned to a machine:
  - Create / destroy machines:
  - Configurator:
   - Add new diskfiles or select exsisting ones. 
+ - Supports remote management with Virt Server https://github.com/LucaOonk/Virt-Server
 
 ## Depends on:
 - libvirt https://www.libvirt.org
