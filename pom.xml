@@ -2,11 +2,11 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.lucaoonk.virsh_gui</groupId>
-  <artifactId>virsh_gui</artifactId>
+  <groupId>com.lucaoonk.Virt_Commander</groupId>
+  <artifactId>Virt_Commander</artifactId>
   <packaging>jar</packaging>
   <version>0.4.1</version>
-  <name>virsh_gui</name>
+  <name>Virt_Commander</name>
   <url>http://maven.apache.org</url>
 
   
@@ -55,10 +55,10 @@
             </descriptorRefs>
             <archive>
               <manifest>
-                <mainClass>com.lucaoonk.virsh_gui.Launcher</mainClass>
+                <mainClass>com.lucaoonk.Virt_Commander.Launcher</mainClass>
               </manifest>
             </archive>
-            <finalName>virsh_gui</finalName>
+            <finalName>Virt_Commander</finalName>
             <appendAssemblyId>false</appendAssemblyId>
           </configuration>
           <executions>
@@ -78,9 +78,9 @@
 	    <configuration>
 		  <plist>
 			  <CFBundleIconFile>icon.icns</CFBundleIconFile>
-			  <CFBundleDisplayName>Virsh GUI</CFBundleDisplayName>
-			  <CFBundleName>Virsh GUI</CFBundleName>
-			  <JVMMainClassName>com.lucaoonk.virsh_gui.Launcher</JVMMainClassName>
+			  <CFBundleDisplayName>Virt Commander</CFBundleDisplayName>
+			  <CFBundleName>Virt Commander</CFBundleName>
+			  <JVMMainClassName>com.lucaoonk.Virt_Commander.Launcher</JVMMainClassName>
         <NSHighResolutionCapable>true</NSHighResolutionCapable>
 		  </plist>
 		  <dmg>

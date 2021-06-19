@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch VMDomstatsProcessor",
+            "request": "launch",
+            "mainClass": "com.lucaoonk.virsh_gui.Backend.Processors.VMDomstatsProcessor",
+            "projectName": "virsh_gui"
+        },
+        {
+            "type": "java",
+            "name": "Launch LoadingScreen",
+            "request": "launch",
+            "mainClass": "com.lucaoonk.virsh_gui.ui.LoadingScreen",
+            "projectName": "virsh_gui"
+        },
+        {
+            "type": "java",
             "name": "Launch Notification",
             "request": "launch",
             "mainClass": "com.lucaoonk.virsh_gui.Backend.Notification",
