@@ -41,7 +41,7 @@ Since macOS doesn't support QEMU security features, we need to disable them:
 Finally start the libvirt service, with `brew services start libvirt`. It will start after boot as well.
 
 # Download:
-Releases can be found here: https://github.com/LucaOonk/Virsh-Gui/releases
+Releases can be found here: https://github.com/LucaOonk/Virt-Commander/releases
 
 # Planned features:
 - Show disk size
