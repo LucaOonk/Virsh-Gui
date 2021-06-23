@@ -1,9 +1,12 @@
 package com.lucaoonk.Virt_Commander.Backend.Processors.Remote;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,12 +31,12 @@ public class RemoteVMListProcessor {
     }
 
     public void runCommand() throws IOException{
-        this.vmList = getVMdomainList(context.remoteAddress);
+        this.vmList = getVMdomainList(context.remoteAddress, context);
         
         context.updateVMList(vmList);
     }
 
-    public static ArrayList<VM> getVMdomainList(String remoteAddress) throws IOException {
+    public static ArrayList<VM> getVMdomainList(String remoteAddress, Context context) throws IOException {
 
         try {
             HttpResponse<String> response = Unirest.get(remoteAddress+"/list")
@@ -55,10 +58,16 @@ public class RemoteVMListProcessor {
 
             JDialog dialog = new JDialog();
             JPanel panel = new JPanel();
+            JButton switchToLocalButton = new JButton("Switch to local");
+            // switchToLocalButton.addActionListener(new SwitchToLocalListener());
             dialog.setTitle("Error connecting to remote server!");
-            JLabel label = new JLabel("<html><b>Make sure u enterd the correct address</b></html>");
+            JLabel label = new JLabel("<html><b>Make sure u entered the correct address</b></html>");
+            switchToLocalButton.addActionListener(new RemoteVMListActionListener(context, dialog));
             panel.setBorder(new EmptyBorder(10,10,10,10));
             panel.add(label);
+            panel.add(switchToLocalButton);
+
+            // panel.add(switchToLocalButton);
             dialog.add(panel);
             dialog.setSize(300, 150);
             dialog.setLocationRelativeTo(null);
@@ -73,3 +82,5 @@ public class RemoteVMListProcessor {
     }
     
 }
+
+

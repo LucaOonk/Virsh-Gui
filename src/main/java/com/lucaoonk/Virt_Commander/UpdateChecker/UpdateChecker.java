@@ -43,7 +43,7 @@ import kong.unirest.Unirest;
 public class UpdateChecker extends SwingWorker{
 
 
-    private static final String urlToCheck = "https://api.github.com/repos/LucaOonk/Virsh-Gui/releases/latest";
+    private static final String urlToCheck = "https://api.github.com/repos/LucaOonk/Virt-Commander/releases/latest";
     private Context context;
 
 

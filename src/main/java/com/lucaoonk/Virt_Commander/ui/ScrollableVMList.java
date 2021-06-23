@@ -36,48 +36,51 @@ public class ScrollableVMList extends JScrollPane implements ActionListener{
         JPanel content = new JPanel();
         content.setBorder(new EmptyBorder(10, 10, 10, 10));
 
-        content.setLayout(new GridLayout(context.getVMList().size() +2, 2));
+        
+            content.setLayout(new GridLayout(context.getVMList().size() +2, 2));
 
-        content.add(new JLabel("<html><b>VM name</b></html>")); // now add to jpanel   
-
-        // first create button
-        JButton refreshButton = new JButton("Refresh");
-        content.add(refreshButton); // now add to jpanel
-        this.refreshButton = refreshButton;
-
-        // now add anonymous action listener
-        refreshButton.addActionListener(this);
-
-          for (VM vm : context.getVMList()) {
-
-            this.vm = vm;
-            // content.add(new JLabel(vm.getID().toString())); // now add to jpanel
-
-            if(vm.isRunning()){
-                content.add(new JLabel("<html><b><font color=Green>"+vm.getDomain()+"</b></font></html>")); // now add to jpanel   
-
-            }else{
-                content.add(new JLabel("<html><b><font color=Red>"+vm.getDomain()+"</b></font></html>")); // now add to jpanel   
-
-            }
-
+            content.add(new JLabel("<html><b>VM name</b></html>")); // now add to jpanel   
+    
             // first create button
-            VMinfoButton button = new VMinfoButton("Show Info", vm, context);
+            JButton refreshButton = new JButton("Refresh");
+            content.add(refreshButton); // now add to jpanel
+            this.refreshButton = refreshButton;
+    
+            // now add anonymous action listener
+            refreshButton.addActionListener(this);
+    
+              for (VM vm : context.getVMList()) {
+    
+                this.vm = vm;
+                // content.add(new JLabel(vm.getID().toString())); // now add to jpanel
+    
+                if(vm.isRunning()){
+                    content.add(new JLabel("<html><b><font color=Green>"+vm.getDomain()+"</b></font></html>")); // now add to jpanel   
+    
+                }else{
+                    content.add(new JLabel("<html><b><font color=Red>"+vm.getDomain()+"</b></font></html>")); // now add to jpanel   
+    
+                }
+    
+                // first create button
+                VMinfoButton button = new VMinfoButton("Show Info", vm, context);
+                content.add(button); // now add to jpanel
+                // now add anonymous action listener       
+              }
+    
+            content.add(new JLabel("")); // now add to jpanel
+    
+            // first create button
+            JButton button = new JButton("add New VM");
             content.add(button); // now add to jpanel
-            // now add anonymous action listener       
-          }
+            this.addNewVMButton = button;
+            if(!context.local){
+                addNewVMButton.setEnabled(false);
+            }
+            // now add anonymous action listener
+            button.addActionListener(this);
 
-        content.add(new JLabel("")); // now add to jpanel
 
-        // first create button
-        JButton button = new JButton("add New VM");
-        content.add(button); // now add to jpanel
-        this.addNewVMButton = button;
-        if(!context.local){
-            addNewVMButton.setEnabled(false);
-        }
-        // now add anonymous action listener
-        button.addActionListener(this);
 
         return content;
     }

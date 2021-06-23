@@ -229,9 +229,7 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
         // TODO Auto-generated method stub
 
         if(e.getSource().equals(localButton)){
-            System.out.println("Chose local");
             context.local = true;
-            context.remoteOrLocal = true;
             try {
                 localInit();
             } catch (Exception e1) {
@@ -240,9 +238,7 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
             }
         }
         if(e.getSource().equals(remoteButton)){
-            System.out.println("Chose remote");
             context.local = false;
-            context.remoteOrLocal = true;
             context.remoteAddress = remoteAddress.getText();
 
         }

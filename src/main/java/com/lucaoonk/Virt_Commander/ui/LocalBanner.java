@@ -1,15 +1,31 @@
 package com.lucaoonk.Virt_Commander.ui;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.EmptyBorder;
 
+import com.lucaoonk.Virt_Commander.Backend.RemoteConnector;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
+import com.lucaoonk.Virt_Commander.Backend.Objects.RemoteConnection;
+import com.lucaoonk.Virt_Commander.Backend.Objects.RemoteConnectionComboItem;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class LocalBanner extends JPanel{
+public class LocalBanner extends JPanel implements ActionListener {
  
     private Context context;
+    private JButton switchToRemoteButton;
+    private JButton switchButton;
+    private JTextArea remoteAddressText;
+    private JDialog remoteDialog;
+    private JComboBox combobox;
+    private JButton editConnections;
     
     public JPanel getPanel(Context context){
 
@@ -19,7 +35,9 @@ public class LocalBanner extends JPanel{
         panel.add(getBanner(), BorderLayout.CENTER);
 
         panel.add(topLeftPanel(), BorderLayout.WEST);
+        panel.add(switchToRemotePanel(), BorderLayout.EAST);
 
+        
         return panel;
     }
 
@@ -38,5 +56,31 @@ public class LocalBanner extends JPanel{
     }
 
 
+    private JPanel switchToRemotePanel(){
+        JPanel panel = new JPanel();
+        JButton switchToRemoteButton = new JButton("Switch to remote");
+        this.switchToRemoteButton = switchToRemoteButton;
+        switchToRemoteButton.addActionListener(this);
+        panel.add(switchToRemoteButton);
+
+        return panel;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        // TODO Auto-generated method stub
+
+        if(e.getSource().equals(switchToRemoteButton)){
+            RemoteConnector connector = new RemoteConnector(context);
+            connector.showConnectorDialog();
+
+            
+
+        }
+
+
+        
+
+    }
 
 }

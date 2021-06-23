@@ -120,17 +120,26 @@ public class VM {
 
 
         String disksString = "";
+        String devicesString = "";
+
         int amountOfDisks = 0;
+        int amountOfDevices = 0;
         for (Device dev : this.getDevices()) {
-            if(dev.getClass().getName().equals("com.lucaoonk.virsh_gui.Backend.Objects.Disk")){
+            if(dev.getClass().getName().equals("com.lucaoonk.Virt_Commander.Backend.Objects.Disk")){
                 amountOfDisks+=1;
                 Disk disk = (Disk) dev;
+
                 disksString+= disk.device + ":"+"<br>"+"&nbsp;Location: "+ disk.source + "<br>&nbsp;Type: "+ disk.driver + "<br><br>";
 
+            }else{
+                amountOfDevices+=1;
+
+                devicesString+= dev.device + "<br><br>";
             }
 
         }
         vmDetails+= "<tr><td>Attached Disks ("+amountOfDisks+") :</td><td>"+disksString+"</td></tr>";
+        vmDetails+= "<tr><td>Attached Devices ("+amountOfDevices+") :</td><td>"+devicesString+"</td></tr>";
 
         String forwardedPorts = "";
         for (String port : this.getForwardedPorts()) {
