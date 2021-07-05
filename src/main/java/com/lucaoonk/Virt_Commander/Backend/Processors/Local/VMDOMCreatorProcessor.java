@@ -299,45 +299,45 @@ public class VMDOMCreatorProcessor {
 
         for (Device device : vmCreationObject.devices) {
 
-            if(device.getClass().getName().equals("com.lucaoonk.virsh_gui.Backend.Objects.Disk")){
+            if(device.getClass().getName().equals("com.lucaoonk.Virt_Commander.Backend.Objects.Disk")){
                 Disk disk = (Disk) device;
 
 
-            Element diskNode = doc.createElement("disk");
-            diskNode.setAttribute("type", "file");
-            if(disk.device.equals("disk")){
-                diskNode.setAttribute("device",disk.device);
+                Element diskNode = doc.createElement("disk");
+                diskNode.setAttribute("type", "file");
+                if(disk.device.equals("disk")){
+                    diskNode.setAttribute("device",disk.device);
 
-                Element diskDriver = doc.createElement("driver");
-                diskDriver.setAttribute("name", "qemu");
-                diskDriver.setAttribute("type", disk.type);
-                diskNode.appendChild(diskDriver);
+                    Element diskDriver = doc.createElement("driver");
+                    diskDriver.setAttribute("name", "qemu");
+                    diskDriver.setAttribute("type", disk.type);
+                    diskNode.appendChild(diskDriver);
 
-                Element sourceNode = doc.createElement("source");
-                sourceNode.setAttribute("file", disk.source);
-                diskNode.appendChild(sourceNode);
+                    Element sourceNode = doc.createElement("source");
+                    sourceNode.setAttribute("file", disk.source);
+                    diskNode.appendChild(sourceNode);
 
-                Element DisktargetNode = doc.createElement("target");
-                DisktargetNode.setAttribute("dev", disk.target);
-                DisktargetNode.setAttribute("bus", "virtio");
-                diskNode.appendChild(DisktargetNode);
+                    Element DisktargetNode = doc.createElement("target");
+                    DisktargetNode.setAttribute("dev", disk.target);
+                    DisktargetNode.setAttribute("bus", "virtio");
+                    diskNode.appendChild(DisktargetNode);
 
-            }
+                }
 
-            if(disk.device.equals("cdrom")){
-                diskNode.setAttribute("device",disk.device);
+                if(disk.device.equals("cdrom")){
+                    diskNode.setAttribute("device",disk.device);
 
-                Element sourceNode = doc.createElement("source");
-                sourceNode.setAttribute("file", disk.source);
-                diskNode.appendChild(sourceNode);
+                    Element sourceNode = doc.createElement("source");
+                    sourceNode.setAttribute("file", disk.source);
+                    diskNode.appendChild(sourceNode);
 
-                Element DisktargetNode = doc.createElement("target");
-                DisktargetNode.setAttribute("dev", disk.target);
-                DisktargetNode.setAttribute("bus", "sata");
-                diskNode.appendChild(DisktargetNode);
+                    Element DisktargetNode = doc.createElement("target");
+                    DisktargetNode.setAttribute("dev", disk.target);
+                    DisktargetNode.setAttribute("bus", "sata");
+                    diskNode.appendChild(DisktargetNode);
 
-            }
-            node.appendChild(diskNode);
+                }
+                node.appendChild(diskNode);
 
             }
         }
