@@ -54,4 +54,4 @@ Releases can be found here: https://github.com/LucaOonk/Virt-Commander/releases
 - VM-usage graphs
 
 # Known Issues:
-
+- Drives not being added to a VM when using the configurator
