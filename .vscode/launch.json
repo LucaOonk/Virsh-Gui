@@ -9,6 +9,13 @@
             "name": "Launch Launcher",
             "request": "launch",
             "mainClass": "com.lucaoonk.Virt_Commander.Launcher",
+            "projectName": "Virt_Commander"
+        },
+        {
+            "type": "java",
+            "name": "Launch Launcher",
+            "request": "launch",
+            "mainClass": "com.lucaoonk.Virt_Commander.Launcher",
             "projectName": "virsh_gui"
         }
     ]

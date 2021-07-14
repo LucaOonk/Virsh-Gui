@@ -48,6 +48,8 @@ public class Context {
     private String currentSelectedUUID;
 
     public ArrayList<RemoteConnection> remoteConnections;
+    public String loadingStatus;
+    public boolean loadingIsDone;
     private final static String connectionsFileLocation = System.getProperty("user.home") + "/Library/Application Support/Virt_Commander/connections.json";
 
 

@@ -59,28 +59,38 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
         this.context = new Context();
         this.mainFrame = new JFrame();
         this.context.mainJFrame = mainFrame;
-        
+        this.context.loadingIsDone = false;
+        this.context.loadingStatus = "Initializing...";
+
+        LoadingScreen loadingScreen = new LoadingScreen();
+        loadingScreen.showLoadingScreen(context);
 
         if(context.local){
+            this.context.loadingStatus = "Initializing Local";
             localInit();
         }
     }
 
     private void localInit() throws Exception{
+        this.context.loadingStatus = "Reading Settings";
         ApplicationSettings.readSettingsFile(context);
 
         if(context.local){
+            this.context.loadingStatus = "Getting Local Machines";
             VMListProcessor t = new VMListProcessor(context);
             t.runCommand();
 
+            this.context.loadingStatus = "Parsing Local Machines";
             for (VM vm : context.getVMList()) {
                 VMDOMProcessor.getDetails(vm);
             }
         }else{
+            this.context.loadingStatus = "Getting Remote Machines";
             RemoteVMListProcessor t = new RemoteVMListProcessor(context);
             t.runCommand();
         }
 
+        this.context.loadingIsDone = true;
 
         if(context.checkForUpdates){
 
