@@ -28,6 +28,8 @@ public class LoadingScreenThread extends SwingWorker{
         // define what thread will do here 
         while(!context.loadingIsDone){
             statusLabel.setText(context.loadingStatus);
+            progressFrame.invalidate();
+            progressFrame.repaint();
         }
         statusLabel.setText("Loading Done");
 

@@ -138,7 +138,6 @@ public class Context {
             VMListProcessor processor = new VMListProcessor(this);
             
             try {
-                
                 this.vmList = processor.getVMdomainList();
 
                 VMDOMProcessorThread domThread = new VMDOMProcessorThread(this);
@@ -162,6 +161,7 @@ public class Context {
         }
 
         mainContent.update();
+        System.gc();
     }
     
 

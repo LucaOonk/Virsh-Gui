@@ -38,7 +38,7 @@ public class ApplicationSettingsView implements ActionListener{
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
         panel.setLayout(new GridLayout(8,2));
 
-        settingsDialog.setTitle("Virsh GUI settings");
+        settingsDialog.setTitle("Virt-Commander settings");
 
         showDefaultSaveLocation(panel, context);
 

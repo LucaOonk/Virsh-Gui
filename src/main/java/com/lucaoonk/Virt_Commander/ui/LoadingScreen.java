@@ -25,9 +25,4 @@ public class LoadingScreen {
           
         progessFrame.setVisible(true); 
     }
-
-    public void updateStatusText(){
-        
-    }
-
 }

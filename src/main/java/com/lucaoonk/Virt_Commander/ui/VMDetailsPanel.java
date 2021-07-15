@@ -8,6 +8,7 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.border.EmptyBorder;
 
 import com.lucaoonk.Virt_Commander.Backend.Controllers.DOMController;
@@ -33,6 +34,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
     private JButton startVMButton;
     private JButton undefineVMButton;
     private JButton forceShutdownbutton;
+    private JButton editButton;
 
     public VMDetailsPanel(Context context) {
 
@@ -52,6 +54,8 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
 
     private JPanel headPanel(){
         JPanel panel = new JPanel();
+        panel.setLayout(new BorderLayout());
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
         VM vm = context.getCurrentSelectedVM();
         String headerText;
         if(vm.isRunning()){
@@ -59,7 +63,13 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
         }else{
             headerText= "<html><b><font size=16>"+vm.getDomain()+"</font><font size=16 color=Red> Shutdown</font></b></html>";
         }
-        panel.add(new JLabel(headerText));
+        panel.add(new JLabel(headerText), BorderLayout.CENTER);
+
+        if(context.local){
+            this.editButton = new JButton("Edit");
+            editButton.addActionListener(this);
+            panel.add(editButton, BorderLayout.EAST);
+        }
 
         return panel;
     }
@@ -68,17 +78,16 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
 
     private JPanel getVMDetailsPanel(){
 
+        JScrollPane pane = new JScrollPane();
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
 
         JPanel panel = new JPanel();
-
         VM vm = context.getCurrentSelectedVM();
 
-       
         panel.add(new JLabel(vm.vmDetailsTable()));
-
-        mainPanel.add(panel, BorderLayout.CENTER);
+        pane.setViewportView(panel);
+        mainPanel.add(pane, BorderLayout.CENTER);
         mainPanel.add(getButtonPanel(), BorderLayout.NORTH);
 
         return mainPanel;
@@ -186,6 +195,12 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
             }else{
                 VMController.destroyVM(vm, context);
             }
+        }
+
+        if(e.getSource().equals(this.editButton)){
+            System.out.println("Edit: "+context.getCurrentSelectedVM().getDomain());
+
+
         }
 
         if(e.getSource().equals(this.startVMButton)){
