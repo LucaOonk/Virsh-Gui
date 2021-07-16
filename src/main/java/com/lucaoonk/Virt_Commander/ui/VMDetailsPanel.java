@@ -13,6 +13,7 @@ import javax.swing.border.EmptyBorder;
 
 import com.lucaoonk.Virt_Commander.Backend.Controllers.DOMController;
 import com.lucaoonk.Virt_Commander.Backend.Controllers.VMController;
+import com.lucaoonk.Virt_Commander.Backend.Controllers.VNCConnection.VNCConnection;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Device;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Disk;
@@ -29,12 +30,13 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
     private Context context;
     private VM vm;
     protected JDialog dialog;
-    private JButton connectVMButton;
+    private JButton connectVMButtonVirtViewer;
     private JButton stopVMButton;
     private JButton startVMButton;
     private JButton undefineVMButton;
     private JButton forceShutdownbutton;
     private JButton editButton;
+    private JButton connectVMButtonVNCViewer;
 
     public VMDetailsPanel(Context context) {
 
@@ -103,17 +105,36 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
 
         this.vm = context.getCurrentSelectedVM();
             
-        JButton button = new JButton("Connect to VM");
-        this.connectVMButton = button;
+        JButton button = new JButton("Connect to VM (virt-viewer)");
+        this.connectVMButtonVirtViewer = button;
         if(vm.isRunning() && context.local){
-            connectVMButton.setEnabled(true);
+            connectVMButtonVirtViewer.setEnabled(true);
         }else{
-            connectVMButton.setEnabled(false);
+            connectVMButtonVirtViewer.setEnabled(false);
         }
 
         panel.add(button); // now add to jpanel
 
         button.addActionListener(this);
+
+        JButton vncbutton = new JButton("Export VNC-file to Desktop");
+        this.connectVMButtonVNCViewer = vncbutton;
+        
+        if(vm.isRunning() && context.local && (vm.vncIP != null && vm.vncPort != null)){
+            connectVMButtonVNCViewer.setEnabled(true);
+        }else{
+            connectVMButtonVNCViewer.setEnabled(false);
+        }
+        vncbutton.addActionListener(this);
+
+        panel.add(vncbutton); // now add to jpanel
+
+
+        JButton startbutton = new JButton("Start VM");
+
+        panel.add(startbutton); // now add to jpanel
+        this.startVMButton = startbutton;
+        startbutton.addActionListener(this);
 
         JButton UndefineButton = new JButton("Undefine VM");
         UndefineButton.setForeground(Color.RED);;
@@ -122,11 +143,16 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
         this.undefineVMButton = UndefineButton;
         UndefineButton.addActionListener(this);
 
-        JButton startbutton = new JButton("Start VM");
+        JButton stopbutton = new JButton("Shutdown VM");
 
-        panel.add(startbutton); // now add to jpanel
-        this.startVMButton = startbutton;
-        startbutton.addActionListener(this);
+        panel.add(stopbutton); // now add to jpanel
+        this.stopVMButton = stopbutton;
+        stopbutton.addActionListener(this);
+        if(vm.isRunning()){
+            stopbutton.setEnabled(true);
+        }else{
+            stopbutton.setEnabled(false);
+        }
 
         JButton forceShutdownbutton = new JButton("Force shutdown VM");
         forceShutdownbutton.setForeground(Color.RED);;
@@ -140,16 +166,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
             forceShutdownbutton.setEnabled(false);
         }
 
-        JButton stopbutton = new JButton("Shutdown VM");
 
-        panel.add(stopbutton); // now add to jpanel
-        this.stopVMButton = stopbutton;
-        stopbutton.addActionListener(this);
-        if(vm.isRunning()){
-            stopbutton.setEnabled(true);
-        }else{
-            stopbutton.setEnabled(false);
-        }
 
         return panel;
     }
@@ -158,7 +175,7 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         // TODO Auto-generated method stub
 
-        if(e.getSource().equals(this.connectVMButton)){
+        if(e.getSource().equals(this.connectVMButtonVirtViewer)){
             if(!VMDetailsPanel.this.vm.isRunning()){
                 JDialog d = new JDialog(context.mainJFrame, "Error");
   
@@ -175,6 +192,28 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
             }else{
                 VMController VMC = new VMController(context);
                 VMC.connectToVM(vm);
+            }
+        }
+
+        if(e.getSource().equals(this.connectVMButtonVNCViewer)){
+            if(!VMDetailsPanel.this.vm.isRunning()){
+                JDialog d = new JDialog(context.mainJFrame, "Error");
+  
+                // create a label
+                JLabel l = new JLabel("The vm is not running");
+      
+                d.add(l);
+      
+                // setsize of dialog
+                d.setSize(150, 150);
+                d.setLocationRelativeTo(null);
+                // set visibility of dialog
+                d.setVisible(true);
+            }else{
+
+                VNCConnection connection = new VNCConnection(context.getCurrentSelectedVM());
+                connection.connect();
+
             }
         }
 

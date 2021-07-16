@@ -6,6 +6,8 @@ import java.awt.Toolkit;
 import java.awt.desktop.SystemEventListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.net.URI;
 import java.util.concurrent.TimeUnit;
 
@@ -29,7 +31,7 @@ import com.lucaoonk.Virt_Commander.Backend.Processors.Remote.RemoteVMListProcess
 import com.lucaoonk.Virt_Commander.UpdateChecker.UpdateChecker;
 
 
-public class MainFrame extends JFrame implements ActionListener, SystemEventListener{
+public class MainFrame extends JFrame implements ActionListener, SystemEventListener, WindowListener{
 
     /**
      *
@@ -69,6 +71,7 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
             this.context.loadingStatus = "Initializing Local";
             localInit();
         }
+        mainFrame.addWindowListener(this);
     }
 
     private void localInit() throws Exception{
@@ -252,6 +255,48 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
             context.remoteAddress = remoteAddress.getText();
 
         }
+        
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void windowClosing(WindowEvent e) {
+
+        MainFrame.exitProgram();
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+        // TODO Auto-generated method stub
+        
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+        // TODO Auto-generated method stub
         
     }
 
