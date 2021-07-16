@@ -105,9 +105,12 @@ public class RemoteConnector implements ActionListener{
             context.remoteConnections.remove(value);
             context.writeConnections();
             context.refresh();
-            remoteDialog.invalidate();
-            remoteDialog.repaint();
 
+            remoteDialog.setVisible(false);
+
+            RemoteConnector newDialog = new RemoteConnector(context);
+            newDialog.showConnectionEditor();
+            
         }
         
         if(e.getSource().equals(addButton)){

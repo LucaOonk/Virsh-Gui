@@ -36,7 +36,7 @@ public class ApplicationSettingsView implements ActionListener{
 
         JPanel panel = new JPanel();
         panel.setBorder(new EmptyBorder(10, 10, 10, 10));
-        panel.setLayout(new GridLayout(8,2));
+        panel.setLayout(new GridLayout(6,2));
 
         settingsDialog.setTitle("Virt-Commander settings");
 
@@ -44,9 +44,6 @@ public class ApplicationSettingsView implements ActionListener{
 
         showCheckForUpdatesSetting(panel, context);
         showWindowSizeSettings(panel, context);
-        showLocalSettings(panel, context);
-        showRemoteAdress(panel, context);
-
         addApplySettings(panel, context);
         
         settingsDialog.add(panel);
@@ -55,26 +52,6 @@ public class ApplicationSettingsView implements ActionListener{
         settingsDialog.setVisible(true);
 
         this.settingsDialog = settingsDialog;
-    }
-
-    private void showLocalSettings(JPanel settingsPane, Context context) {
-        settingsPane.add(new JLabel("<html>If disabled uses the specified remote address, else the local machine is used</html>"));
-
-        JCheckBox localCheckBox = new JCheckBox("Use local");
-        
-        localCheckBox.setSelected(context.local);
-        this.localCheckbox= localCheckBox;
-
-        settingsPane.add(localCheckBox);
-    }
-
-    private void showRemoteAdress(JPanel settingsPane, Context context){
-
-        settingsPane.add(new JLabel("Remote Address: "));
-        JTextArea remoteAdressText = new JTextArea(context.remoteAddress);
-        this.remoteAdressText = remoteAdressText;
-        settingsPane.add(remoteAdressText);
-
     }
 
     private void showCheckForUpdatesSetting(JPanel settingsPane, Context context){
