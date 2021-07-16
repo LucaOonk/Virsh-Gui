@@ -44,7 +44,7 @@ Finally start the libvirt service, with `brew services start libvirt`. It will s
 Releases can be found here: https://github.com/LucaOonk/Virt-Commander/releases
 
 # Planned features:
-- Show disk size
+- Show disk size (actual / virtual)
 - Edit VM configuration:
   - Edit Vm resources
   - Add/remove disks
@@ -54,4 +54,4 @@ Releases can be found here: https://github.com/LucaOonk/Virt-Commander/releases
 - VM-usage graphs
 
 # Known Issues:
-- Drives not being added to a VM when using the configurator
+- After a while being idle the info of the VM disappears and is set to `Null`. Current workaround is to click `Show Info` again or `Refresh`.
