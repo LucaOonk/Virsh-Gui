@@ -6,12 +6,9 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.border.EmptyBorder;
 
 import com.lucaoonk.Virt_Commander.Backend.RemoteConnector;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
-import com.lucaoonk.Virt_Commander.Backend.Objects.RemoteConnection;
-import com.lucaoonk.Virt_Commander.Backend.Objects.RemoteConnectionComboItem;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;

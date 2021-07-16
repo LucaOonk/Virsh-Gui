@@ -129,7 +129,7 @@ public class VM {
                 amountOfDisks+=1;
                 Disk disk = (Disk) dev;
 
-                disksString+= disk.device + ":"+"<br>"+"&nbsp;Location: "+ disk.source + "<br>&nbsp;Type: "+ disk.driver + "<br><br>";
+                disksString+= disk.device +": (Used: "+ disk.Available+"/ Provisioned: "+disk.Used+") " + ":"+"<br>"+"&nbsp;Location: "+ disk.source + "<br>&nbsp;Type: "+ disk.driver + "<br><br>";
 
             }else{
                 amountOfDevices+=1;

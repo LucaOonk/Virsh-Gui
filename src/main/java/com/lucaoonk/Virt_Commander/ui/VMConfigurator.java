@@ -3,13 +3,10 @@ package com.lucaoonk.Virt_Commander.ui;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.TransformerException;
 
 import com.lucaoonk.Virt_Commander.Backend.Controllers.DOMController;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;

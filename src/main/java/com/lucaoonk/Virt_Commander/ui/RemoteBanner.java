@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 
 import com.lucaoonk.Virt_Commander.Backend.RemoteConnector;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
-import com.lucaoonk.Virt_Commander.Backend.Objects.RemoteConnection;
 
 public class RemoteBanner extends JPanel implements ActionListener{
 

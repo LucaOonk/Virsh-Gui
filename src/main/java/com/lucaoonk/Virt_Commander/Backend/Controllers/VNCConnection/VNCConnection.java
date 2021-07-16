@@ -1,9 +1,7 @@
 package com.lucaoonk.Virt_Commander.Backend.Controllers.VNCConnection;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 import com.lucaoonk.Virt_Commander.Backend.Objects.VM;
 

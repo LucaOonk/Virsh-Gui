@@ -1,9 +1,6 @@
 package com.lucaoonk.Virt_Commander.Backend.Processors.Remote;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
+
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import javax.swing.JButton;
@@ -14,7 +11,6 @@ import javax.swing.border.EmptyBorder;
 
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
 import com.lucaoonk.Virt_Commander.Backend.Objects.VM;
-import com.lucaoonk.Virt_Commander.Backend.Processors.Remote.Objects.RemoteVM;
 import com.lucaoonk.Virt_Commander.Backend.Processors.Remote.Objects.VMList;
 import com.google.gson.Gson;
 import kong.unirest.HttpResponse;

@@ -20,7 +20,6 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
 import com.lucaoonk.Virt_Commander.ui.MainFrame;
 
 import org.json.simple.JSONObject;

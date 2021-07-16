@@ -2,7 +2,6 @@ package com.lucaoonk.Virt_Commander.ui;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
 import com.lucaoonk.Virt_Commander.Backend.Objects.VM;

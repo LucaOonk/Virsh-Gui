@@ -2,8 +2,6 @@ package com.lucaoonk.Virt_Commander.Backend.Processors.Remote;
 
 import com.google.gson.Gson;
 import com.lucaoonk.Virt_Commander.Backend.Objects.VM;
-import com.lucaoonk.Virt_Commander.Backend.Processors.Remote.Objects.VMList;
-import com.lucaoonk.Virt_Commander.CrashReporter.CrashReporter;
 
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;

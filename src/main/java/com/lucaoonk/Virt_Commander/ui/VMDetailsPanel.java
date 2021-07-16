@@ -15,8 +15,6 @@ import com.lucaoonk.Virt_Commander.Backend.Controllers.DOMController;
 import com.lucaoonk.Virt_Commander.Backend.Controllers.VMController;
 import com.lucaoonk.Virt_Commander.Backend.Controllers.VNCConnection.VNCConnection;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
-import com.lucaoonk.Virt_Commander.Backend.Objects.Device;
-import com.lucaoonk.Virt_Commander.Backend.Objects.Disk;
 import com.lucaoonk.Virt_Commander.Backend.Objects.VM;
 
 
