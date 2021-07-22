@@ -62,7 +62,6 @@ public class ConnectionData {
             }
     
             connection.append("ConnTime="+Calendar.getInstance().getTime()+"\n");
-    
             connection.append("FriendlyName="+this.getFriendlyName()+"\n");
             connection.append("Host="+this.getIP()+"\n");
             connection.append("RelativePtr=0\n");
@@ -70,6 +69,7 @@ public class ConnectionData {
     
             connectionFile.write(connection.toString());
             connectionFile.close();
+            
         } catch (Exception e) {
             //TODO: handle exception
         }

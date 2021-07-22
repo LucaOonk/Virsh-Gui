@@ -40,6 +40,12 @@ public class VMDOMProcessor {
 
                 
             }
+
+            if(xmlInfo.length() == 0){
+
+                return;
+            }
+
             DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
             InputSource src = new InputSource();
             src.setCharacterStream(new StringReader(xmlInfo));

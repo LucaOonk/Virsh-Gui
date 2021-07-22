@@ -111,16 +111,20 @@ public class Context {
 
     public VM getCurrentSelectedVM(){
 
-        for (VM vm : vmList) {
-            if(currentSelectedUUID == null){
-                this.currentSelectedVM= vmList.get(0);
-            }else{
-                if(this.currentSelectedUUID.equals(vm.getUUID())){
-                    this.currentSelectedVM = vm;
-                    return vm;
-                }   
-            }
-
+        try {
+            for (VM vm : vmList) {
+                if(currentSelectedUUID == null){
+                    this.currentSelectedVM= vmList.get(0);
+                }else{
+                    if(this.currentSelectedUUID.equals(vm.getUUID())){
+                        this.currentSelectedVM = vm;
+                        return vm;
+                    }   
+                }
+    
+            }    
+        } catch (Exception e) {
+            this.currentSelectedVM= vmList.get(0);
         }
 
         return currentSelectedVM;
