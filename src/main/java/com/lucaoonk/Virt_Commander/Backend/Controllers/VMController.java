@@ -86,7 +86,6 @@ public class VMController {
                  Process process = Runtime.getRuntime().exec("/usr/local/bin/qemu-img create -f qcow2 "+context2.getDefaultSaveLocation()+vmDomain2+"/"+ vmDomain2+".qcow2 +"+sizeString);
 
             } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
         
@@ -95,7 +94,6 @@ public class VMController {
                     Process process = Runtime.getRuntime().exec("/usr/local/bin/qemu-img create -f qcow2 "+diskFileLocation2+ vmDomain2+".qcow2 +"+sizeString);
 
                 } catch (IOException e) {
-                    // TODO Auto-generated catch block
                     e.printStackTrace();
                 }
             }
@@ -120,7 +118,6 @@ public class VMController {
                     try {
                         Process process = Runtime.getRuntime().exec("/usr/local/bin/virsh start "+vmToStart.getDomain());
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
         
@@ -172,7 +169,6 @@ public class VMController {
                     try {
                         Process process = Runtime.getRuntime().exec("/usr/local/bin/virsh shutdown "+vmToStop.getDomain());
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
         
@@ -223,7 +219,6 @@ public class VMController {
                     try {
                         Process process = Runtime.getRuntime().exec("/usr/local/bin/virt-viewer "+vmToConnect.getDomain());
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
         
@@ -273,7 +268,6 @@ public class VMController {
                     try {
                         Process process = Runtime.getRuntime().exec("/usr/local/bin/virsh destroy "+vmToConnect.getDomain());
                     } catch (IOException e) {
-                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
         

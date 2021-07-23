@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.util.Calendar;
 import java.util.UUID;
 
+import com.lucaoonk.Virt_Commander.CrashReporter.CrashReporter;
+
 public class ConnectionFileHandler {
 
     private ConnectionData connectionData;
@@ -43,7 +45,7 @@ public class ConnectionFileHandler {
             connectionFile.close();
             
         } catch (Exception e) {
-            //TODO: handle exception
+            CrashReporter.logCrash(e);
         }
         
 

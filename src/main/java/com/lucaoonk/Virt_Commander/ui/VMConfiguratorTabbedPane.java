@@ -27,7 +27,6 @@ public class VMConfiguratorTabbedPane implements ActionListener {
     /**
      *
      */
-    private static final long serialVersionUID = 1L;
     private Context context;
     private JPanel generalPane;
     private String[] diskTargets = {"vda", "vdb", "vdc", "vdd", "vde", "vdf", "vdg", "vdh", "vdi"};
@@ -39,7 +38,6 @@ public class VMConfiguratorTabbedPane implements ActionListener {
     private String boldlEnd = "</b>";
     private JPanel finalPane;
     private JDialog dialog;
-    private JDialog summarydialog;
 
     private JTextField vmName;
     private JTextField vmRam;
@@ -58,7 +56,6 @@ public class VMConfiguratorTabbedPane implements ActionListener {
     private JTextField vmForwardedPorts;
     private JCheckBox createNewDisk;
     private JTextField newDiskSize;
-    private JButton showSummary;
     
     public VMConfiguratorTabbedPane(Context context){
         UIManager.put("TabbedPane.selected", Color.BLACK);
@@ -135,6 +132,7 @@ public class VMConfiguratorTabbedPane implements ActionListener {
         d.add(new JLabel());
         d.add(new JLabel());
 
+        // TODO Add option for multiple iso's to be mounted
         final JComboBox<String> cdromTarget = new JComboBox<String>(cdromTargets);
         d.add(new JLabel(htmlStart+boldStart+"CDrom device target:"+boldlEnd+htmlEnd));
         this.cdromTarget = cdromTarget;

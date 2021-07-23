@@ -30,7 +30,6 @@ public class DOMController {
             }
 
         } catch (Exception e) {
-            // TODO Auto-generated catch block
 
             throw e;
         }
@@ -45,7 +44,6 @@ public class DOMController {
             context.updateCurrentSelectedVM(context.getVMList().get(0));
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
 
             e.printStackTrace();
         }
@@ -68,7 +66,6 @@ public class DOMController {
                 
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
 
             throw e;
         }

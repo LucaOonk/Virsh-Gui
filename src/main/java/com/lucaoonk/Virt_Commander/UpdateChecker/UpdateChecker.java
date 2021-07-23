@@ -11,17 +11,13 @@ public class UpdateChecker extends SwingWorker{
 
 
     private static final String urlToCheck = "https://api.github.com/repos/LucaOonk/Virt-Commander/releases/latest";
-    private Context context;
 
-
-    public UpdateChecker(Context context){
+    public UpdateChecker(){
 
         super();
-        this.context = context;
 
         try {
         } catch (Exception e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
 
@@ -35,7 +31,7 @@ public class UpdateChecker extends SwingWorker{
     @Override
     protected Boolean doInBackground() {
 
-        System.out.println("Current: "+context.getVersion());
+        System.out.println("Current: "+Context.getVersion());
         try {
             HttpResponse<JsonNode> response = Unirest.get(urlToCheck).asJson();
             JsonNode responseBody = response.getBody();

@@ -1,11 +1,8 @@
 package com.lucaoonk.Virt_Commander.ui;
 
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
 import com.lucaoonk.Virt_Commander.Backend.RemoteConnector;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
@@ -18,11 +15,6 @@ public class LocalBanner extends JPanel implements ActionListener {
  
     private Context context;
     private JButton switchToRemoteButton;
-    private JButton switchButton;
-    private JTextArea remoteAddressText;
-    private JDialog remoteDialog;
-    private JComboBox combobox;
-    private JButton editConnections;
     
     public JPanel getPanel(Context context){
 
@@ -65,7 +57,6 @@ public class LocalBanner extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
 
         if(e.getSource().equals(switchToRemoteButton)){
             RemoteConnector connector = new RemoteConnector(context);

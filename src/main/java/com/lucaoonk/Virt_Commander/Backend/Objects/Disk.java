@@ -44,5 +44,4 @@ public class Disk extends Device{
         }
     }
 
-    // TODO add virtual disk size and actual disksize using: <qemu-img info source>
 }

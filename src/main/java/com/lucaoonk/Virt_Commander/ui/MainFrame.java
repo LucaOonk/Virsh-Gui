@@ -19,7 +19,6 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingWorker;
 import javax.swing.border.EmptyBorder;
 
 import com.lucaoonk.Virt_Commander.Backend.AutoRefreshThread;
@@ -43,9 +42,6 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
     private JButton localButton;
     private JButton remoteButton;
     private JTextField remoteAddress;
-
-
-    private SwingWorker autoRefresh;
 
     public MainFrame() {
 
@@ -96,7 +92,7 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
 
         if(context.checkForUpdates){
 
-            UpdateChecker checker = new UpdateChecker(context);
+            UpdateChecker checker = new UpdateChecker();
             checker.isNewewVersionAvailable();
         }
 
@@ -183,7 +179,7 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
             JDialog dialog = new JDialog();
             JPanel panel = new JPanel();
             dialog.setTitle("A new update is available");
-            JLabel label = new JLabel("<html><b>"+context.latestVersion+" is out! Current version is: "+context.getVersion()+"</b></html>");
+            JLabel label = new JLabel("<html><b>"+Context.latestVersion+" is out! Current version is: "+Context.getVersion()+"</b></html>");
             panel.setBorder(new EmptyBorder(10,10,10,10));
             panel.add(label);
             
@@ -238,14 +234,12 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
 
         if(e.getSource().equals(localButton)){
             context.local = true;
             try {
                 localInit();
             } catch (Exception e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
         }
@@ -259,7 +253,6 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
 
     @Override
     public void windowOpened(WindowEvent e) {
-        // TODO Auto-generated method stub
         
     }
 
@@ -271,31 +264,26 @@ public class MainFrame extends JFrame implements ActionListener, SystemEventList
 
     @Override
     public void windowClosed(WindowEvent e) {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void windowIconified(WindowEvent e) {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void windowDeiconified(WindowEvent e) {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void windowActivated(WindowEvent e) {
-        // TODO Auto-generated method stub
         
     }
 
     @Override
     public void windowDeactivated(WindowEvent e) {
-        // TODO Auto-generated method stub
         
     }
 

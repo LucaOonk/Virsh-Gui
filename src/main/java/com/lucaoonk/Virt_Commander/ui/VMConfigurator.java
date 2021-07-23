@@ -106,7 +106,6 @@ public class VMConfigurator extends JDialog{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
 
                 final VMCreationObject newVM = new VMCreationObject();
                 newVM.vmName = vmName.getText();
@@ -145,7 +144,6 @@ public class VMConfigurator extends JDialog{
                     DOMController.defineDomain(vmLocation.getText(), newVM.vmName, context);
 
                 } catch (Exception e1) {
-                    // TODO Auto-generated catch block
                     CrashReporter.logCrash(e1); 
                 }
                 context.refresh();

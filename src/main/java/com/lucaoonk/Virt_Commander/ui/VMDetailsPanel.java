@@ -171,7 +171,6 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
 
         if(e.getSource().equals(this.connectVMButtonVirtViewer)){
             if(!VMDetailsPanel.this.vm.isRunning()){
@@ -308,7 +307,6 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
 
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        // TODO Auto-generated method stub
                         DOMController.undefineDomain(VMDetailsPanel.this.vm.getDomain(), context);
                         VMDetailsPanel.this.dialog.setVisible(false);
 

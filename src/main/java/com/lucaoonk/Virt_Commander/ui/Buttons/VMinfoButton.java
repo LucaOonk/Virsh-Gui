@@ -28,7 +28,6 @@ public class VMinfoButton extends JButton implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        // TODO Auto-generated method stub
         context.updateCurrentSelectedVM(vm);
         context.refresh();
 
