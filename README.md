@@ -19,6 +19,7 @@ Show resources assigned to a machine:
  - Configurator:
   - Add new diskfiles or select exsisting ones. 
  - Supports remote management with Virt Server https://github.com/LucaOonk/Virt-Server
+ - Show disk size (Actual Used / Provisioned)
 
 ## Depends on:
 - libvirt https://www.libvirt.org
@@ -44,7 +45,6 @@ Finally start the libvirt service, with `brew services start libvirt`. It will s
 Releases can be found here: https://github.com/LucaOonk/Virt-Commander/releases
 
 # Planned features:
-- Show disk size (actual / virtual)
 - Edit VM configuration:
   - Edit Vm resources
   - Add/remove disks
@@ -55,3 +55,4 @@ Releases can be found here: https://github.com/LucaOonk/Virt-Commander/releases
 
 # Known Issues:
 - After a while being idle the info of the VM disappears and is set to `Null`. Current workaround is to click `Show Info` again or `Refresh`.
+- Storage of disk is `Null`, this is caused by the name/path of the file. If there is a space in the name it wont report the storage.
