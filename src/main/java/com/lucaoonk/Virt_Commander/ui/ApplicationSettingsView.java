@@ -110,8 +110,6 @@ public class ApplicationSettingsView implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e){
 
-        // TODO make changes persistant
-
         context.checkForUpdates = checkForUpdatesCheckbox.isSelected();
         context.autoSizeWindow = autoSizeWindow.isSelected();
         context.local = localCheckbox.isSelected();
