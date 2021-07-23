@@ -5,7 +5,7 @@
   <groupId>com.lucaoonk.Virt_Commander</groupId>
   <artifactId>Virt_Commander</artifactId>
   <packaging>jar</packaging>
-  <version>0.5.2</version>
+  <version>0.5.3</version>
   <name>Virt_Commander</name>
   <url>http://maven.apache.org</url>
 
