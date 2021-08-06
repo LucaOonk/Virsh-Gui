@@ -1,5 +1,8 @@
 # Virt Commander
 A gui for QEMU/Libvirt made in Java so you can start, stop, add, remove to virsh and connect to them.
+
+I found UTM (https://mac.getutm.app/), which is the same as this program but better in almost every way. Development on this and Virt-Server will stop.  
+
 I made this because i had troubles getting the virt-manager to work on MacOS, so i made my own.
 
 This is far from production ready so beware.
