@@ -27,16 +27,17 @@ public class RemoteVMListProcessor {
     }
 
     public void runCommand() throws IOException{
-        this.vmList = getVMdomainList(context.remoteAddress, context);
+        this.vmList = getVMdomainList(context.remoteAddress, context, context.httpAuth);
         
         context.updateVMList(vmList);
     }
 
-    public static ArrayList<VM> getVMdomainList(String remoteAddress, Context context) throws IOException {
+    public static ArrayList<VM> getVMdomainList(String remoteAddress, Context context, String httpAuth) throws IOException {
 
         try {
             HttpResponse<String> response = Unirest.get(remoteAddress+"/list")
             .header("Content-Type", "application/json")
+            .header("Authentication", httpAuth)
             .asString();
     
             Gson g = new Gson();
@@ -46,7 +47,7 @@ public class RemoteVMListProcessor {
             ArrayList<VM> actualVMs = new ArrayList<VM>();
     
             for (VM vm : list.vms) {
-                actualVMs.add(RemoteVMDetailProcessor.getDetails(vm, remoteAddress));
+                actualVMs.add(RemoteVMDetailProcessor.getDetails(vm, remoteAddress, httpAuth));
             }
     
             return actualVMs;

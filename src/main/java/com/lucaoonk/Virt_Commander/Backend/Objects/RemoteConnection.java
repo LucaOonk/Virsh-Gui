@@ -5,5 +5,6 @@ public class RemoteConnection {
     public String name;
     public String address;
     public Boolean favorite;
+    public String httpAuthentication;
     
 }

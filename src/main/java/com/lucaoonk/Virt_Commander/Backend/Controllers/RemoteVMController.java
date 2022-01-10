@@ -14,18 +14,18 @@ import kong.unirest.Unirest;
 public class RemoteVMController {
  
     
-    public static void startVm(VM vm, String remoteAddress){
+    public static void startVm(VM vm, String remoteAddress, String httpAuth){
 
         try {
+
             HttpResponse<String> response = Unirest.post(remoteAddress+"/vm/")
             .header("Content-Type", "application/json")
+            .header("Authentication", httpAuth)
             .body("{\"name\":\""+vm.getDomain()+"\",\"action\":\"start\"}")
             .asString();
         
             Gson g = new Gson();
             VM remote = g.fromJson(response.getBody(), VM.class);
-
-
 
         } catch (Exception e) {
 
@@ -47,18 +47,17 @@ public class RemoteVMController {
     }   
 
 
-    public static void stopVM(VM vm, String remoteAddress){
+    public static void stopVM(VM vm, String remoteAddress, String httpAuth){
 
         try {
             HttpResponse<String> response = Unirest.post(remoteAddress+"/vm/")
             .header("Content-Type", "application/json")
+            .header("Authentication", httpAuth)
             .body("{\"name\":\""+vm.getDomain()+"\",\"action\":\"stop\"}")
             .asString();
         
             Gson g = new Gson();
             VM remote = g.fromJson(response.getBody(), VM.class);
-
-
 
         } catch (Exception e) {
 

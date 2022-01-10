@@ -8,11 +8,12 @@ import kong.unirest.Unirest;
 
 public class RemoteVMDetailProcessor {
 
-    public static VM getDetails(VM vm, String remoteAddress) {
+    public static VM getDetails(VM vm, String remoteAddress, String httpAuth) {
 
         try {
             HttpResponse<String> response = Unirest.post(remoteAddress+"/vm/details/")
             .header("Content-Type", "application/json")
+            .header("Authentication", httpAuth)
             .body("{\"name\":\""+vm.getDomain()+"\"}")
             .asString();
     

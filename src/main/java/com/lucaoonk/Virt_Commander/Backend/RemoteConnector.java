@@ -23,6 +23,8 @@ public class RemoteConnector implements ActionListener{
     private Context context;
     private JComboBox combobox;
     private JTextArea remoteAddressText;
+    private JTextArea httpAuthenticationText;
+
     private JButton removeButton;
     private JTextArea remoteNameText;
     private JButton addButton;
@@ -83,6 +85,13 @@ public class RemoteConnector implements ActionListener{
                 RemoteConnection connection = ((RemoteConnectionComboItem)item).getValue();
     
                 context.remoteAddress = connection.address;
+
+                if(connection.httpAuthentication != ""){
+                    context.httpAuth = connection.httpAuthentication;
+                }else{
+                    context.httpAuth = "";
+                }
+                
                 context.local = false;
                 remoteDialog.dispose();
                 context.refresh();
@@ -118,7 +127,8 @@ public class RemoteConnector implements ActionListener{
             RemoteConnection connection = new RemoteConnection();
             connection.address = remoteAddressText.getText();
             connection.name = remoteNameText.getText();
-            
+            connection.httpAuthentication = httpAuthenticationText.getText();
+
             System.out.println(connection.name+" " + connection.address);
             context.remoteConnections.add(connection);
             context.writeConnections();
@@ -146,9 +156,13 @@ public class RemoteConnector implements ActionListener{
         this.remoteNameText = remoteNameText;
         remoteNameText.setSize(80, 20);
 
+        JTextArea httpAuthText = new JTextArea();
+        this.httpAuthenticationText = httpAuthText;
+        httpAuthenticationText.setSize(80, 20);
+
         // remoteAddressText.setSize(100, 20);
         panel.setBorder(new EmptyBorder(10,10,10,10));
-        panel.setLayout(new GridLayout(5,2));
+        panel.setLayout(new GridLayout(7,2));
 
         panel.add(new JLabel("<html><b>Select a connection and click remove to remove it</b></html>"));
         panel.add(new JLabel("<html><b>New Connection Name</b></html>"));
@@ -172,6 +186,15 @@ public class RemoteConnector implements ActionListener{
 
         panel.add(new JLabel());
 
+        panel.add(new JLabel("<html><b>HTTP authentication (leave empty if none should be used)</b></html>"));
+
+        panel.add(new JLabel());
+
+        panel.add(httpAuthenticationText);
+
+        panel.add(new JLabel());
+
+
         JButton addButton = new JButton("Add new Connection");
         this.addButton = addButton;
         addButton.addActionListener(this);
@@ -180,7 +203,7 @@ public class RemoteConnector implements ActionListener{
         
         // panel.add(switchToLocalButton);
         dialog.add(panel);
-        dialog.setSize(500, 200);
+        dialog.setSize(500, 250);
         dialog.setLocationRelativeTo(null);
         dialog.setVisible(true);
         dialog.setResizable(false);

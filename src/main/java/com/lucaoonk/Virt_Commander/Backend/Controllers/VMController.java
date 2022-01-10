@@ -32,7 +32,7 @@ public class VMController {
             VMController.startVMthread(vmToStart, context);
 
         }else{
-            RemoteVMController.startVm(vm, context.remoteAddress);
+            RemoteVMController.startVm(vm, context.remoteAddress, context.httpAuth);
 
         }
 
@@ -45,7 +45,7 @@ public class VMController {
         if(context.local){
             VMController.stopVMthread(vmToStop, context);
         }else{
-            RemoteVMController.stopVM(vm, context.remoteAddress);
+            RemoteVMController.stopVM(vm, context.remoteAddress, context.httpAuth);
         }
 
 

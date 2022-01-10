@@ -35,7 +35,7 @@ public class Context {
     public MainContent mainContent;
     public JFrame mainJFrame;
     public String defaultSaveLocation;
-    private static final String versionString = "0.5.3";
+    private static final String versionString = "0.5.4";
     public Boolean checkForUpdates;
     private String applicationDefaultSaveLocation;
     public Integer windowHeight;
@@ -45,6 +45,7 @@ public class Context {
     public long autoRefreshRate;
     public boolean local;
     public String remoteAddress;
+    public String httpAuth;
     private String currentSelectedUUID;
 
     public ArrayList<RemoteConnection> remoteConnections;
@@ -64,6 +65,7 @@ public class Context {
     private void initDefaults(){
         this.checkForUpdates = true;
         this.local = true;
+        this.httpAuth = "";
         this.remoteAddress = "";
         this.remoteConnections = new ArrayList<RemoteConnection>();
 
