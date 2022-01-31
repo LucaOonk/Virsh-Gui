@@ -14,6 +14,7 @@ import com.lucaoonk.Virt_Commander.Backend.Controllers.DOMController;
 import com.lucaoonk.Virt_Commander.Backend.Controllers.VMController;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Context;
 import com.lucaoonk.Virt_Commander.Backend.Objects.Disk;
+import com.lucaoonk.Virt_Commander.Backend.Objects.VM;
 import com.lucaoonk.Virt_Commander.Backend.Objects.VMCreationObject;
 import com.lucaoonk.Virt_Commander.Backend.Processors.Local.VMDOMCreatorProcessor;
 import com.lucaoonk.Virt_Commander.CrashReporter.CrashReporter;
@@ -56,6 +57,7 @@ public class VMConfiguratorTabbedPane implements ActionListener {
     private JTextField vmForwardedPorts;
     private JCheckBox createNewDisk;
     private JTextField newDiskSize;
+    private VM prefilledVm;
     
     public VMConfiguratorTabbedPane(Context context){
         UIManager.put("TabbedPane.selected", Color.BLACK);
@@ -75,16 +77,36 @@ public class VMConfiguratorTabbedPane implements ActionListener {
 
     }
 
+    public void fillValues(VM vm){
+
+        this.prefilledVm = vm;
+        this.vmName.setText(vm.getDomain());
+        this.vmCpus.setText(vm.getcpus());
+        this.vmRam.setText(vm.getRamInGB());
+
+        for (Disk disk : vm.getDisks()) {
+            if(disk.device.equals("disk")){
+                this.diskFileLocation.setText(disk.source);
+            }
+
+            if(disk.device.equals("cdrom")){
+                this.cdromFileLocation.setText(disk.source);
+            }
+        }
+
+        this.vmForwardedPorts.setText(vm.getForwardedPortsString());        
+    }
+
     public JPanel getPane(){
 
 
         JTabbedPane tabs = new JTabbedPane();
 
         tabs.addTab("1. General", generalPane);
+        
         tabs.addTab("2. Storage & cd", disksPanel);
 
         tabs.addTab("3. Advanced Settings", advancedPane);
-        
         
         tabs.addTab("4. Final Step", finalPane);
 
@@ -196,7 +218,7 @@ public class VMConfiguratorTabbedPane implements ActionListener {
         panel.add(vmArguments);
 
 
-        panel.add(new JLabel(htmlStart+boldStart+"Forwarded ports"+boldlEnd+":<br> format: protocol::external Port-:interal Port<br>e.g.: tcp::2222:22,tcp::8080-8081:80"+htmlEnd));
+        panel.add(new JLabel(htmlStart+boldStart+"Forwarded ports"+boldlEnd+":<br> format: <br>hostfwd=protocol::external Port-:interal Port<br>e.g.:<br>hostfwd=tcp::2222:22,<br>hostfwd=tcp::8080-8081:80"+htmlEnd));
         final JTextField vmForwardedPorts = new JTextField();
         this.vmForwardedPorts = vmForwardedPorts;
         panel.add(vmForwardedPorts);
@@ -244,19 +266,19 @@ public class VMConfiguratorTabbedPane implements ActionListener {
                 } catch (Exception e1) {
                     CrashReporter.logCrash(e1);
                 } 
-                
-    
 
             }
 
-            
         }
      
     }
 
     private VMCreationObject parseVMSettings(){
+
+
         final VMCreationObject newVM = new VMCreationObject();
         newVM.vmName = vmName.getText();
+        newVM.UUID = prefilledVm.getUUID();
         if(!vmCpus.getText().equals("")){
             newVM.cpus = Integer.parseInt(vmCpus.getText());
         }
@@ -289,14 +311,11 @@ public class VMConfiguratorTabbedPane implements ActionListener {
         }
                 
     
-    
-        
-        if(!vmForwardedPorts.getText().equals("")){
-        
-            newVM.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1,"+vmForwardedPorts.getText()+" -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19 "+vmArguments.getText();
+        if(vmForwardedPorts.getText().equals("")){
+            newVM.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1 -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19 "+vmArguments.getText();
         
         }else{
-            newVM.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1 -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19 "+vmArguments.getText();
+            newVM.arguments = "-machine type=q35,accel=hvf -netdev user,id=n1,"+vmForwardedPorts.getText()+" -device virtio-net-pci,netdev=n1,bus=pcie.0,addr=0x19 "+vmArguments.getText();
         
         }
                 

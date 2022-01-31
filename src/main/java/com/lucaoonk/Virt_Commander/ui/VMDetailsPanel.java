@@ -234,8 +234,10 @@ public class VMDetailsPanel extends JPanel implements ActionListener{
         }
 
         if(e.getSource().equals(this.editButton)){
-            System.out.println("Edit: "+context.getCurrentSelectedVM().getDomain());
 
+            VMConfiguratorTabbedPane configurator = new VMConfiguratorTabbedPane(context);
+            configurator.fillValues(vm);
+            configurator.show();
 
         }
 

@@ -6,7 +6,7 @@
         {
             "label": "Build and Run",
             "type": "shell",
-            "command": "mvn package && cd target && open 'Virsh GUI.app'",
+            "command": "mvn package && cd target && open 'Virt Commander.app'",
             "problemMatcher": [],
             "group": {
                 "kind": "build",

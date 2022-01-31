@@ -1,12 +1,16 @@
 package com.lucaoonk.Virt_Commander.Backend.Processors.Local;
 
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.StringWriter;
 import java.util.UUID;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
+import javax.xml.transform.Result;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -43,7 +47,14 @@ public class VMDOMCreatorProcessor {
             root.appendChild(vmName.appendChild(createNewElementWithValue(doc, "name", vmCreationObject.vmName)));
             
             Element vmUUID = doc.createElement("uuid");
-            root.appendChild(vmUUID.appendChild(createNewElementWithValue(doc, "uuid", UUID.randomUUID().toString())));
+
+            if(!vmCreationObject.UUID.equals("")){
+                root.appendChild(vmUUID.appendChild(createNewElementWithValue(doc, "uuid", vmCreationObject.UUID)));
+
+            }else{
+                root.appendChild(vmUUID.appendChild(createNewElementWithValue(doc, "uuid", UUID.randomUUID().toString())));
+
+            }
             
             Element vmvcpu= doc.createElement("vcpu");
             vmvcpu.setAttribute("placement", "static");
@@ -100,7 +111,6 @@ public class VMDOMCreatorProcessor {
             
             transf.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
             transf.setOutputProperty(OutputKeys.INDENT, "yes");
-            // transf.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
             
             DOMSource source = new DOMSource(doc);
     
@@ -110,17 +120,44 @@ public class VMDOMCreatorProcessor {
                 if(context.defaultSaveLocation.equals("")){
                     File myFile = new File(System.getProperty ("user.home")+"/vms/"+vmCreationObject.vmName+"/"+vmCreationObject.vmName+".xml");
                     myFile.getParentFile().mkdirs();
-    
-                    StreamResult file = new StreamResult(myFile);
-                    transf.transform(source, file);
-    
+                    
+                    FileWriter writer;
+                    try {
+                        writer = new FileWriter(myFile, false);
+                        StringWriter w = new StringWriter();
+                        Result dest = new StreamResult(w);
+                        transf.transform(source, dest);
+                        String xmlString = w.toString();
+                    
+                        writer.write(xmlString);
+                        writer.close();
+
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+
+
                 }else{
 
                     File myFile = new File(context.defaultSaveLocation+vmCreationObject.vmName+"/"+vmCreationObject.vmName+".xml");
                     myFile.getParentFile().mkdirs();
     
-                    StreamResult file = new StreamResult(myFile);
-                    transf.transform(source, file);
+                    FileWriter writer;
+                    try {
+                        writer = new FileWriter(myFile, false);
+                        StringWriter w = new StringWriter();
+                        Result dest = new StreamResult(w);
+                        transf.transform(source, dest);
+                        String xmlString = w.toString();
+                    
+                        writer.write(xmlString);
+                        writer.close();
+                        
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
     
                 }
 
@@ -130,11 +167,23 @@ public class VMDOMCreatorProcessor {
                 File myFile = new File(context.getDefaultSaveLocation()+vmCreationObject.vmName+"/"+vmCreationObject.vmName+".xml");
                 myFile.getParentFile().mkdirs();
 
-                StreamResult file = new StreamResult(myFile);
-                transf.transform(source, file);
+                FileWriter writer;
+                try {
+                    writer = new FileWriter(myFile, false);
+                    StringWriter w = new StringWriter();
+                    Result dest = new StreamResult(w);
+                    transf.transform(source, dest);
+                    String xmlString = w.toString();
+                
+                    writer.write(xmlString);
+                    writer.close();
+                    
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            
             }
-
-        
     }
 
     private static Node memoryNode(Document doc, String ramUnit, String ramAmount) {
@@ -174,7 +223,6 @@ public class VMDOMCreatorProcessor {
 
         return argumentNode;
     }
-    //        <graphics type='vnc' port='5901' listen='127.0.0.1'/>
 
     private static Node graphicsNode(Document doc, VMCreationObject vmCreationObject, Context context) {
 
@@ -341,12 +389,6 @@ public class VMDOMCreatorProcessor {
 
             }
         }
-        // Element suspendtodiskNode = doc.createElement("suspend-to-disk");
-        // suspendtomemNode.setAttribute("enabled", suspendToMem);
-        // suspendtodiskNode.setAttribute("enabled", suspendToDisk);
-        // node.appendChild(suspendtomemNode);
-        // node.appendChild(suspendtodiskNode);
-
         return node;
     }
 

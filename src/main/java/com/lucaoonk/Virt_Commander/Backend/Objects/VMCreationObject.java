@@ -12,6 +12,7 @@ public class VMCreationObject {
     public ArrayList<Device> devices;
     public String arch;
     public String arguments;
+    public String UUID;
 
 
     public VMCreationObject(){

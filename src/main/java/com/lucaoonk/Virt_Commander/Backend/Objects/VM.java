@@ -100,6 +100,46 @@ public class VM {
         return this.portsForwarded;
     }
 
+    public String getForwardedPortsString(){
+
+        String ports = "";
+
+        int i=0;
+        for (String port : this.portsForwarded) {
+
+            if(i == 0){
+                ports = "hostfwd="+port;
+                i++;
+            }else{
+                ports = ports+",hostfwd="+port;
+                i++;
+            }
+        }
+
+        return ports;
+    }
+
+    public String getRamInGB(){
+        Double ram = Integer.parseInt(this.getRam()) * 1.024E-6;
+        return ""+ram.intValue();
+    }
+
+    public ArrayList<Disk> getDisks(){
+
+        ArrayList<Disk> disks = new ArrayList<Disk>();
+
+
+        for (Device dev : this.getDevices()) {
+            if(dev.getClass().getName().equals("com.lucaoonk.Virt_Commander.Backend.Objects.Disk")){
+                Disk disk = (Disk) dev;
+
+                disks.add(disk);
+            }
+
+        }
+        return disks;
+    }
+
     public String vmDetailsTable(){
         String vmDetails = "<html><table><tr><td><b>Property</b></td><td><b>Value</b></td></tr>";
         vmDetails+= "<tr><td>UUID:</td><td>"+this.getUUID()+"</td></tr>";

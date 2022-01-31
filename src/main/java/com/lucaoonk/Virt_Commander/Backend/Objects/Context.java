@@ -35,7 +35,7 @@ public class Context {
     public MainContent mainContent;
     public JFrame mainJFrame;
     public String defaultSaveLocation;
-    private static final String versionString = "0.5.4";
+    private static final String versionString = "0.5.5";
     public Boolean checkForUpdates;
     private String applicationDefaultSaveLocation;
     public Integer windowHeight;

@@ -31,6 +31,7 @@ public class DOMController {
 
         } catch (Exception e) {
 
+            e.printStackTrace();
             throw e;
         }
 

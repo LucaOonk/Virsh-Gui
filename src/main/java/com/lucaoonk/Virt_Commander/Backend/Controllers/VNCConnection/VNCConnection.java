@@ -15,8 +15,6 @@ public class VNCConnection {
 
     public void connect(){
 
-        System.out.println("Triggerd VNC connect");
-
         String location = System.getProperty("user.home") + "/Desktop/Virt_Commander-VNC/";
         String vncConnectFile = location+vm.getDomain()+".vnc";
         ConnectionData data = new ConnectionData();
